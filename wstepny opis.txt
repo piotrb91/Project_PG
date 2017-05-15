@@ -1,0 +1,5 @@
+Projektem wykonany bêdzie prawdopodobnie w technologii ASP.NET. 
+W projekcie zawarty bêdzie sklep online, prawdopodobnie sklep obuwniczy.
+Zalogowany klient bêdzie umieszczaæ "do koszyka" swoj towar i cena za wszystkie towary bêdzie zsumowana.
+Istnieæ bêdzie ograniczona liczba towaru do kupienia.
+To tak na wstêpie co mam na myœli.
