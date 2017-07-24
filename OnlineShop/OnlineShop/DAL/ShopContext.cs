@@ -15,9 +15,9 @@ namespace OnlineShop.DAL
 
         }
 
-        public DbSet<Shop> Produkty {get; set;}
+        public DbSet<Product> Products {get; set;}
         public DbSet<Category> Categories { get; set; }
-        public DbSet<Orders> Orders { get; set; }
+        public DbSet<Order> Orders { get; set; }
         public DbSet<OrderPosition> OrderPositions { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)

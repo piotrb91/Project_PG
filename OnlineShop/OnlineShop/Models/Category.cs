@@ -8,6 +8,6 @@ namespace OnlineShop.Models
         public int CategoryID { get; set; }
         public string CategoryName { get; set; }
 
-        public virtual ICollection<Shop> Produkty { get; set; }
+        public virtual ICollection<Product> Products { get; set; }
     }
 }

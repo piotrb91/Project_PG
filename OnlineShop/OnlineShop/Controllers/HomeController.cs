@@ -1,4 +1,6 @@
-﻿using System;
+﻿using OnlineShop.DAL;
+using OnlineShop.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,9 +10,14 @@ namespace OnlineShop.Controllers
 {
     public class HomeController : Controller
     {
-        // GET: Home
+        private ShopContext db = new ShopContext();
+
         public ActionResult Index()
         {
+            Category category = new Category { CategoryName = "męskie" };
+            db.Categories.Add(category);
+            db.SaveChanges();
+
             return View();
         }
     }

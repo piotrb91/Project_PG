@@ -5,7 +5,7 @@ using System.Web;
 
 namespace OnlineShop.Models
 {
-    public class Orders
+    public class Order
     {
         public int OrderID { get; set; }
         public string Name { get; set; }

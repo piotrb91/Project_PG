@@ -5,7 +5,7 @@ using System.Web;
 
 namespace OnlineShop.Models
 {
-    public class Shop
+    public class Product
     {
         public int ProductID { get; set; }
         public int CategoryID { get; set; }
@@ -16,6 +16,6 @@ namespace OnlineShop.Models
         public decimal Price { get; set; }
 
 
-        public virtual Category Kategoria { get; set; }
+        public virtual Category Category { get; set; }
     }
 }

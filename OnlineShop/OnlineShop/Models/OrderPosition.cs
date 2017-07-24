@@ -8,8 +8,8 @@
         public int Quantity { get; set; }
         public decimal PurchasePrice { get; set;}
 
-        public virtual Shop shop { get; set; }
-        public virtual Orders orders { get; set; }
+        public virtual Product product { get; set; }
+        public virtual Order order { get; set; }
 
     }
 }
