@@ -1,21 +1,19 @@
-﻿using OnlineShop.Models;
+﻿using OnlineShop.Migrations;
+using OnlineShop.Models;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Data.Entity.Migrations;
 using System.Linq;
 using System.Web;
 
 namespace OnlineShop.DAL
 {
-    public class ProductsInitializer : DropCreateDatabaseAlways<ShopContext>
+    public class ProductsInitializer : MigrateDatabaseToLatestVersion<ShopContext,Configuration>
     {
-        protected override void Seed(ShopContext context)
-        {
-            SeedShopData(context);
-            base.Seed(context);
-        }
+      
 
-        private void SeedShopData(ShopContext context)
+        public static void SeedShopData(ShopContext context)
         {
 
             var categories = new List<Category>
@@ -28,7 +26,7 @@ namespace OnlineShop.DAL
                 new Category() { CategoryID=6, CategoryName="Eleganckie"},
 
                 };
-            categories.ForEach(k => context.Categories.Add(k));
+            categories.ForEach(k => context.Categories.AddOrUpdate(k));
             context.SaveChanges();
 
             var products = new List<Product>
@@ -58,7 +56,7 @@ namespace OnlineShop.DAL
 
 
     };
-            products.ForEach(k => context.Products.Add(k));
+            products.ForEach(k => context.Products.AddOrUpdate(k));
             context.SaveChanges();
         }
     }
