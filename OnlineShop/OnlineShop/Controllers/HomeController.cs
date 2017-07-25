@@ -14,9 +14,8 @@ namespace OnlineShop.Controllers
 
         public ActionResult Index()
         {
-            Category category = new Category { CategoryName = "męskie" };
-            db.Categories.Add(category);
-            db.SaveChanges();
+
+            var ListCategories = db.Categories.ToList();
 
             return View();
         }
