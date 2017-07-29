@@ -15,7 +15,7 @@ namespace OnlineShop.Controllers
         public ActionResult Index()
         {
 
-            var ListCategories = db.Categories.ToList();
+            //var ListCategories = db.Categories.ToList();
 
             return View();
         }

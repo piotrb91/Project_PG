@@ -18,12 +18,12 @@ namespace OnlineShop.DAL
 
             var categories = new List<Category>
             {
-                new Category() { CategoryID=1, CategoryName="Sportowe"},
-                new Category() { CategoryID=2, CategoryName="Klapki"},
-                new Category() { CategoryID=3, CategoryName="Sandały"},
-                new Category() { CategoryID=4, CategoryName="Półbuty"},
-                new Category() { CategoryID=5, CategoryName="Zimowe"},
-                new Category() { CategoryID=6, CategoryName="Eleganckie"},
+                new Category() { CategoryID=1, CategoryName="Adidasy"},
+                new Category() { CategoryID=2, CategoryName="Eleganckie"},
+                new Category() { CategoryID=3, CategoryName="Klapki"},
+                new Category() { CategoryID=4, CategoryName="Sandaly"},
+                new Category() { CategoryID=5, CategoryName="Sportowe"},
+                new Category() { CategoryID=6, CategoryName="Trampki"},
 
                 };
             categories.ForEach(k => context.Categories.AddOrUpdate(k));

@@ -156,6 +156,10 @@
     <Compile Include="Migrations\201707251219112_InitialCreate.Designer.cs">
       <DependentUpon>201707251219112_InitialCreate.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201707291149518_zmianaKategorii.cs" />
+    <Compile Include="Migrations\201707291149518_zmianaKategorii.Designer.cs">
+      <DependentUpon>201707291149518_zmianaKategorii.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Category.cs" />
     <Compile Include="Models\OrderPosition.cs" />
@@ -189,6 +193,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201707251219112_InitialCreate.resx">
       <DependentUpon>201707251219112_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201707291149518_zmianaKategorii.resx">
+      <DependentUpon>201707291149518_zmianaKategorii.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
