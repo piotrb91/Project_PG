@@ -162,18 +162,6 @@
     </Compile>
     <Compile Include="Infrastructure\AppConfig.cs" />
     <Compile Include="Infrastructure\UrlHelpers.cs" />
-    <Compile Include="Migrations\201707251219112_InitialCreate.cs" />
-    <Compile Include="Migrations\201707251219112_InitialCreate.Designer.cs">
-      <DependentUpon>201707251219112_InitialCreate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201707291149518_zmianaKategorii.cs" />
-    <Compile Include="Migrations\201707291149518_zmianaKategorii.Designer.cs">
-      <DependentUpon>201707291149518_zmianaKategorii.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201707301729419_Test.cs" />
-    <Compile Include="Migrations\201707301729419_Test.Designer.cs">
-      <DependentUpon>201707301729419_Test.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Category.cs" />
     <Compile Include="Models\OrderPosition.cs" />
@@ -206,17 +194,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\201707251219112_InitialCreate.resx">
-      <DependentUpon>201707251219112_InitialCreate.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201707291149518_zmianaKategorii.resx">
-      <DependentUpon>201707291149518_zmianaKategorii.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201707301729419_Test.resx">
-      <DependentUpon>201707301729419_Test.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

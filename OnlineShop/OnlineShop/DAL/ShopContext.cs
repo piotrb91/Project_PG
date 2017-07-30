@@ -17,7 +17,7 @@ namespace OnlineShop.DAL
 
         static ShopContext()
         {
-            Database.SetInitializer<ShopContext>(new ProductsInitializer());
+            Database.SetInitializer<ShopContext>(null);
         }
 
         public DbSet<Product> Products {get; set;}

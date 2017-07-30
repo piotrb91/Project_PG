@@ -62,7 +62,7 @@
 
 
                 <header>
-                    </a>
+                    
                     <a id="indexHeaderLogo">
                         <img src="@Url.Content("~/Content/images/logo.png")" class="center" />
                     </a>
@@ -110,30 +110,34 @@
 
                                 <li class="dropdown-header">damskie</li>
                              
-
-                                @foreach (var category in Model.Categories)
-                                { <li>
+                                @foreach (var category in Model.Categories.Where(a => a.CategoryForWomen))
+                                {
+                                <li>
                                     <a href="@Url.Action("List", "Products", new { nameCategories = category.CategoryName.ToLower() })">
 
                                         @category.CategoryName
                                     </a>
                                 </li>
                                 }
+             
 
 
 
 
-                                <li><a href="#">sportowe</a></li>
-                                <li><a href="#">eleganckie</a></li>
-                                <li><a href="#">kozaki</a></li>
+                                
                                 <li role="separator" class="divider"></li>
                                 <li class="dropdown-header">meskie</li>
-                                <li><a href="adidasy_meskie.html">adidasy</a></li>
-                                <li><a href="eleganckie_meskie.html">eleganckie</a></li>
-                                <li><a href="klapki_meskie.html">klapki</a></li>
-                                <li><a href="sandaly_meskie.html">sandaly</a></li>
-                                <li><a href="sportowe_meskie.html">sportowe</a></li>
-                                <li><a href="trampki_meskie.html">trampki</a></li>
+
+                                @foreach (var category in Model.Categories.Where(a => a.CategoryForMen))
+                                {
+                                    <li>
+                                        <a href="@Url.Action("List", "Products", new { nameCategories = category.CategoryName.ToLower() })">
+
+                                            @category.CategoryName
+                                        </a>
+                                    </li>
+                                }
+
 
                                 
                             </ul>
@@ -149,7 +153,7 @@
 
 
 
-                        </li>
+                        
                     </ul>
                 </div><!--/.nav-collapse -->
             </div>

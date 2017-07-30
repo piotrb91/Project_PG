@@ -17,9 +17,17 @@ namespace OnlineShop.Controllers
         {
             var categories = db.Categories.ToList();
 
+            
+
+           
+
+
+
             var vm = new HomeViewModel
             {
-                Categories = categories
+                Categories = categories,
+              
+         
             };
             //var ListCategories = db.Categories.ToList();
 

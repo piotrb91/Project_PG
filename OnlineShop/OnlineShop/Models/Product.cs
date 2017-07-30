@@ -17,5 +17,6 @@ namespace OnlineShop.Models
 
 
         public virtual Category Category { get; set; }
+        
     }
 }

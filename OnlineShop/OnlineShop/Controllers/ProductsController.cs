@@ -1,4 +1,5 @@
-﻿using System;
+﻿using OnlineShop.DAL;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,6 +9,8 @@ namespace OnlineShop.Controllers
 {
     public class ProductsController : Controller
     {
+        private ShopContext db = new ShopContext();
+
         // GET: Products
         public ActionResult Index()
         {
@@ -24,6 +27,8 @@ namespace OnlineShop.Controllers
         {
             return View();
         }
+
+     
 
     }
 }
