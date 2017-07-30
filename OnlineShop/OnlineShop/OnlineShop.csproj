@@ -185,6 +185,7 @@
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Products\List.cshtml" />
     <Content Include="Views\Basket\AddToBasket.cshtml" />
+    <Content Include="Views\Products\_ProductsList.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

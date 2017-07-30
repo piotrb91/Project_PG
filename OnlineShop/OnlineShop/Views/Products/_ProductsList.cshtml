@@ -1,0 +1,29 @@
+﻿@model IEnumerable<OnlineShop.Models.Product>
+@using OnlineShop.Infrastructure
+
+@{
+    ViewBag.Title = "_ProductsList";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>_ProductsList</h2>
+
+
+@foreach (var product in Model) { }
+
+<div class="row">
+    <div class="col-md-4 item text-center"><img src=".../Content/images/eleganckie1.png" alt=""></div>
+    <div class="col-md-4 item text-center"><img src=".../Content/images/eleganckie2.png" alt=""></div>
+    <div class="col-md-4 item text-center"><img src=".../Content/images/eleganckie3.png" alt=""></div>
+
+</div>
+
+
+
+
+<div class="row">
+    <div class="col-md-4 item text-center"><img src=".../Content/images/eleganckie4.png" alt=""></div>
+    <div class="col-md-4 item text-center"><img src=".../Content/images/eleganckie5.png" alt=""></div>
+
+
+</div>
