@@ -1,6 +1,6 @@
 namespace OnlineShop.Migrations
 {
-    using OnlineShop.DAL;
+    using DAL;
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
