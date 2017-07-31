@@ -9,6 +9,6 @@ namespace OnlineShop.ViewModels
     public class HomeViewModel
     {
         public IEnumerable<Category> Categories { get; set; }
-        
+
     }
 }

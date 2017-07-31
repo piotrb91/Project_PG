@@ -14,12 +14,16 @@ namespace OnlineShop.Controllers
         // GET: Products
         public ActionResult Index()
         {
+            
             return View();
         }
 
         public ActionResult List(string nameCategories)
         {
-            return View();
+
+            var category = db.Categories.Include("Products").Where(k => k.CategoryName.ToUpper() == nameCategories.ToUpper()).Single();
+            var products = category.Products.ToList();
+            return View(products);
         }
 
 
@@ -28,12 +32,15 @@ namespace OnlineShop.Controllers
             return View();
         }
 
+       
         public ActionResult CategoriesMenu(string id)
         {
             var categories = db.Categories.ToList();
             return PartialView("_CategoriesMenu",categories);
         }
 
+
+  
 
     }
 }

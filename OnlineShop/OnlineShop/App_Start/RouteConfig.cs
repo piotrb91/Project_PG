@@ -13,6 +13,13 @@ namespace OnlineShop
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
+
+            routes.MapRoute(name: "ProductsList",
+                url: "Category/{nameCategories}.html",
+                defaults: new { controller = "Products", action = "List" });
+
+
+
             routes.MapRoute(name: "StaticSites",
                 url: "site/{name}.html",
                 defaults: new {controller = "Home", action= "StaticSites" });
