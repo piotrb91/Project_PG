@@ -161,6 +161,8 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Infrastructure\AppConfig.cs" />
+    <Compile Include="Infrastructure\DefaultCacheProvider.cs" />
+    <Compile Include="Infrastructure\ICacheProvider.cs" />
     <Compile Include="Infrastructure\UrlHelpers.cs" />
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Category.cs" />
@@ -183,12 +185,12 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
     <Content Include="Views\Home\AboutUs.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
-    <Content Include="Views\Products\List.cshtml" />
     <Content Include="Views\Basket\AddToBasket.cshtml" />
     <Content Include="Views\Products\_CategoriesMenu.cshtml" />
     <Content Include="Views\Home\_CategoriesMenu1.cshtml" />
     <Content Include="Views\Products\Details.cshtml" />
     <Content Include="Views\Products\_ProductsList.cshtml" />
+    <Content Include="Views\Products\List.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

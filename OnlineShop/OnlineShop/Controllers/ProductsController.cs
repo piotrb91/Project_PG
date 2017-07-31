@@ -12,7 +12,7 @@ namespace OnlineShop.Controllers
     public class ProductsController : Controller
     {
         private ShopContext db = new ShopContext();
-
+        
         // GET: Products
         public ActionResult Index()
         {
