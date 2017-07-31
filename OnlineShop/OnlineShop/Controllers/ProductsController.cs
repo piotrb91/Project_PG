@@ -5,6 +5,8 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
+
+
 namespace OnlineShop.Controllers
 {
     public class ProductsController : Controller
@@ -14,27 +16,34 @@ namespace OnlineShop.Controllers
         // GET: Products
         public ActionResult Index()
         {
-            
-            return View();
+                 return View();
         }
+
+
 
         public ActionResult List(string nameCategories)
-        {
-
+            {
+          
             var category = db.Categories.Include("Products").Where(k => k.CategoryName.ToUpper() == nameCategories.ToUpper()).Single();
             var products = category.Products.ToList();
-            return View(products);
-        }
+                return View(products);
+
+            }
+
+        
+
 
 
         public ActionResult Details(string id)
         {
-            return View();
+            var product = db.Products.Find(id);
+            return View(product);
         }
 
-       
+        [OutputCache(Duration = 60000)]
         public ActionResult CategoriesMenu(string id)
         {
+            
             var categories = db.Categories.ToList();
             return PartialView("_CategoriesMenu",categories);
         }

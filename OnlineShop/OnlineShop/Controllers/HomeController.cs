@@ -15,12 +15,13 @@ namespace OnlineShop.Controllers
 
         public ActionResult Index()
         {
+            
             var categories = db.Categories.ToList();
+    
 
             var vm = new HomeViewModel
             {
-                Categories = categories,
-
+                Categories = categories
 
             };
             //var ListCategories = db.Categories.ToList();
@@ -28,17 +29,22 @@ namespace OnlineShop.Controllers
             return View(vm);
         }
 
+       
+
         public ActionResult StaticSites(string name)
         {
             return View(name);
         }
 
-
+        [OutputCache(Duration = 60000)]
         public ActionResult CategoriesMenu1(string id)
         {
             var categories1 = db.Categories.ToList();
             return PartialView("_CategoriesMenu1", categories1);
         }
+
+
+
 
     }
 }
