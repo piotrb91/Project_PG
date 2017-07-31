@@ -28,7 +28,12 @@ namespace OnlineShop.Controllers
             return View();
         }
 
-     
+        public ActionResult CategoriesMenu(string id)
+        {
+            var categories = db.Categories.ToList();
+            return PartialView("_CategoriesMenu",categories);
+        }
+
 
     }
 }

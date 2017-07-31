@@ -1,26 +1,4 @@
-﻿@model OnlineShop.ViewModels.HomeViewModel
-
-
-@{
-    ViewBag.Title = "Shop Online";
-}
-
-
-<div class="container">
-    <div class="row">
-
-
-
-
-
-
-        <div class="col-md-12 item text-center"><img src="@Url.Content("~/Content/images/logo_damskie.jpg")" alt=""></div>
-    </div>
-    <div class="row">
-        <div class="col-md-12 item text-center"><a href=""><img src="@Url.Content("~/Content/images/logo_meskie.jpg")" alt=""> </a></div>
-    </div>
-    </div>
-
+﻿@model IEnumerable<OnlineShop.Models.Category>
 
 
 
@@ -49,10 +27,10 @@
 
                         <li class="dropdown-header">damskie</li>
 
-                        @foreach (var category in Model.Categories.Where(a => a.CategoryForWomen))
+                        @foreach (var category in Model.Where(a => a.CategoryForWomen))
                         {
                             <li>
-                                <a href="@Url.Action("List", "Products", new { nameCategories = category.CategoryName.ToLower() })">
+                                <a href="@Url.Action("List", "Products", new { nameCategories = category.CategoryName.ToString() })">
 
                                     @category.CategoryName
                                 </a>
@@ -67,10 +45,10 @@
                         <li role="separator" class="divider"></li>
                         <li class="dropdown-header">meskie</li>
 
-                        @foreach (var category in Model.Categories.Where(a => a.CategoryForMen))
+                        @foreach (var category in Model.Where(a => a.CategoryForMen))
                         {
                             <li>
-                                <a href="@Url.Action("List", "Products", new { nameCategories = category.CategoryName.ToLower() })">
+                                <a href="@Url.Action("List", "Products", new { nameCategories = category.CategoryName.ToString() })">
 
                                     @category.CategoryName
                                 </a>
@@ -97,20 +75,5 @@
         </div><!--/.nav-collapse -->
     </div>
 </nav>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
