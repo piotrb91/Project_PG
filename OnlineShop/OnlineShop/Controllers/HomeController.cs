@@ -18,12 +18,12 @@ namespace OnlineShop.Controllers
 
             
             var categories = db.Categories.ToList();
-    
+            var products = db.Products.OrderByDescending(a=>a.DateAdded).ToList();
 
             var vm = new HomeViewModel
             {
-                Categories = categories
-
+                Categories = categories,
+              Products = products
             };
             //var ListCategories = db.Categories.ToList();
 
@@ -42,8 +42,8 @@ namespace OnlineShop.Controllers
         {
             var categories1 = db.Categories.ToList();
             return PartialView("_CategoriesMenu1", categories1);
-        }
 
+        }
 
 
 

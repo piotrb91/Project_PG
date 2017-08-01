@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 
+
 namespace OnlineShop.Models
 {
     public class Category
@@ -12,5 +13,8 @@ namespace OnlineShop.Models
 
 
         public virtual ICollection<Product> Products { get; set; }
+
+    
+
     }
 }

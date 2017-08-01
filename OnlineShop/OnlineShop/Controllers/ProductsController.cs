@@ -1,4 +1,5 @@
 ﻿using OnlineShop.DAL;
+using OnlineShop.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,24 +14,25 @@ namespace OnlineShop.Controllers
     {
         private ShopContext db = new ShopContext();
         
-        // GET: Products
+         // GET: Products
         public ActionResult Index()
         {
                  return View();
         }
 
-
+        
 
         public ActionResult List(string nameCategories)
-            {
-          
+        {
+            
             var category = db.Categories.Include("Products").Where(k => k.CategoryName.ToUpper() == nameCategories.ToUpper()).Single();
             var products = category.Products.ToList();
-                return View(products);
-
-            }
+            return View(products);
+            
+        }
 
         
+
 
 
 
@@ -49,7 +51,9 @@ namespace OnlineShop.Controllers
         }
 
 
-  
+
+    
+
 
     }
 }

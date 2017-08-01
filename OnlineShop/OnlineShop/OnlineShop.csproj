@@ -189,8 +189,8 @@
     <Content Include="Views\Products\_CategoriesMenu.cshtml" />
     <Content Include="Views\Home\_CategoriesMenu1.cshtml" />
     <Content Include="Views\Products\Details.cshtml" />
-    <Content Include="Views\Products\_ProductsList.cshtml" />
     <Content Include="Views\Products\List.cshtml" />
+    <Content Include="Views\Products\_ProductsList.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

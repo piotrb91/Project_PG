@@ -1,14 +1,14 @@
 ﻿@model IEnumerable<OnlineShop.Models.Product>
 
-@using OnlineShop.Infrastructure
 
+@using OnlineShop.Infrastructure
 
 @{
     ViewBag.Title = "_ProductsList";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>_ProductsList</h2>
+
 
 <ul class="ColumnAddToBasket">
     @foreach (var product in Model)
