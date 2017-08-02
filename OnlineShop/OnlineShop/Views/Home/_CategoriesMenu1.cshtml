@@ -1,5 +1,5 @@
 ﻿@model IEnumerable<OnlineShop.Models.Category>
-    
+
 
 
 <nav class="navbar navbar-default navbar-fixed-top">
@@ -28,7 +28,7 @@
                         <li class="dropdown-header">damskie</li>
 
 
-
+           
 
 
                         @foreach (var category in Model.Where(a => a.CategoryForWomen))
@@ -41,8 +41,6 @@
                             </li>
                         }
 
-
-                   
 
 
 
@@ -81,7 +79,5 @@
         </div><!--/.nav-collapse -->
     </div>
 </nav>
-
-
 
 
