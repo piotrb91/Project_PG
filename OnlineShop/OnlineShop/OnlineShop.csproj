@@ -173,6 +173,10 @@
     <Compile Include="Infrastructure\DefaultCacheProvider.cs" />
     <Compile Include="Infrastructure\ICacheProvider.cs" />
     <Compile Include="Infrastructure\UrlHelpers.cs" />
+    <Compile Include="Migrations\201708031640332_test.cs" />
+    <Compile Include="Migrations\201708031640332_test.Designer.cs">
+      <DependentUpon>201708031640332_test.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Category.cs" />
     <Compile Include="Models\OrderPosition.cs" />
@@ -192,7 +196,6 @@
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Basket\AddToBasket.cshtml" />
     <Content Include="Views\Products\_CategoriesMenu.cshtml" />
-    <Content Include="Views\Home\_CategoriesMenu1.cshtml" />
     <Content Include="Views\Products\Details.cshtml" />
     <Content Include="Views\Products\_ProductsList.cshtml" />
     <Content Include="Views\Products\List.cshtml" />
@@ -205,6 +208,11 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201708031640332_test.resx">
+      <DependentUpon>201708031640332_test.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

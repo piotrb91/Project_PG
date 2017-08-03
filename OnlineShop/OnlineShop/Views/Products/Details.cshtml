@@ -22,12 +22,12 @@
         </div>
         <div id="KursCena">
             <div>
-                @string.Format("{0:0.##",Model.Price)<span>PLN</span>
+                @string.Format("{0:0.##}", Model.Price)<span>PLN</span>
             </div>
             <a href="@Url.Action("AddToBasket", "Basket", new { id=Model.ProductID})"></a>
         </div>
         <div id="KursOpis">
             @Model.ShoeDescribe
         </div>
-       
+       </div>
 </section>

@@ -1,9 +1,5 @@
-﻿@model OnlineShop.ViewModels.HomeViewModel
-
-
-
-<!DOCTYPE html>
-<html lang="en">
+﻿<!DOCTYPE html>
+<html lang="en" >
 <head>
 
     <meta charset="utf-8">
@@ -21,7 +17,7 @@
       <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
-
+    
 
 
     <style>
@@ -71,7 +67,7 @@
                     <li><a href="@Url.Content("~/")">Strona glowna</a></li>
 
 
-                    
+
                     <li><a href="@Url.Action("StaticSites","Home", new { name = "AboutUs"})">O nas</a></li>
                     <li><a href="@Url.Action("StaticSites","Home", new { name = "Contact"})">Kontakt</a></li>
 
@@ -104,23 +100,23 @@
 
 
     < class="container">
-        <div class="row">
-            <div class="col-xs-12 text-center">
+    <div class="row">
+        <div class="col-xs-12 text-center">
 
 
 
-                <header>
-                
-                        <a id="indexHeaderLogo">
-                            <img src="@Url.Content("~/Content/images/logo.png")" class="center" />
-                        </a>
-                      
-</header>
+            <header>
 
+                <a id="indexHeaderLogo">
+                    <img src="@Url.Content("~/Content/images/logo.png")" class="center" />
+                </a>
 
-            </div>
+            </header>
+
 
         </div>
+
+    </div>
 
 
 
@@ -130,28 +126,44 @@
 
 
 
- 
-    
-
-
-            <footer class=footer>
-                <p>Copyright PB 2017. Created by PB</p>
-            </footer>
 
 
 
 
-        
+
+
+
 
 
 
   
-        <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-        <!-- Include all compiled plugins (below), or include individual files as needed -->
-        <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
-@RenderSection("Scripts", required : false)
+
+
+
+
+
+
+
+
+    <footer class=footer>
+        <p>Copyright PB 2017. Created by PB</p>
+    </footer>
+
+
+
+
+
+
+
+
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+    @RenderSection("Scripts", required: false)
 
 </body>
 </html>

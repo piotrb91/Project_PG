@@ -1,48 +1,26 @@
 ﻿@model IEnumerable<OnlineShop.Models.Product>
-
 @using OnlineShop.Infrastructure
 
 
-@{
-    ViewBag.Title = "_ProductsList";
-    Layout = "~/Views/Shared/_Layout.cshtml";
-}
-
-<h2>_ProductsList</h2>
-
-<ul class="ColumnAddToBasket">
-    @foreach (var product in Model)
-    {
-        <li>
-            <article>
-                <a class="addToBasketLink" href="@Url.Action("AddToBasket","Basket",new { id=product.ProductID})">
-                    <img src="@Url.Content("~/Content/Images/koszyk.png")" />
-                </a>
-                <a class="productDetailsLink" href="@Url.Action("Details","Products",new { id=product.ProductID})">
-                    <img class="product" src="@Url.ImagesPath(product.NameImageFile)" />
-                    <h1>
-                        Tutaj będzie tytuł
-                        @product.ProductName - @product.DateAdded
-                    </h1>
-                </a>
-            </article>
-        </li>
-    }
-</ul>
-
-<div class="row">
-    <div class="col-md-4 item text-center"><img src=".../Content/images/eleganckie1.png" alt=""></div>
-    <div class="col-md-4 item text-center"><img src=".../Content/images/eleganckie2.png" alt=""></div>
-    <div class="col-md-4 item text-center"><img src=".../Content/images/eleganckie3.png" alt=""></div>
-
-</div>
 
 
-
-
-<div class="row">
-    <div class="col-md-4 item text-center"><img src=".../Content/images/eleganckie4.png" alt=""></div>
-    <div class="col-md-4 item text-center"><img src=".../Content/images/eleganckie5.png" alt=""></div>
-
-
-</div>
+<div id="SectionCategoriesList">
+    <ul class="Products ProductPrice">
+        @foreach (var product in Model)
+        {
+            <li>
+                <article>
+                    <a class="addToBasketLink" href="@Url.Action("AddToBasket","Basket",new { id=product.ProductID})">
+                        <img src="@Url.Content("~/Content/Images/koszyk.png")" />
+                    </a>
+                    <a class="productDetailsLink" href="@Url.Action("Details","Products",new { id=product.ProductID})">
+                        <img class="product" src="@Url.ImagesPath(product.NameImageFile)" />
+                        <h1>
+                            @product.ProductName - @product.DateAdded
+                        </h1>
+                    </a>
+                </article>
+            </li>
+        }
+    </ul>
+    </div>

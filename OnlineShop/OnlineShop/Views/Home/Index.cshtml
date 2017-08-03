@@ -24,7 +24,7 @@
 
 
 
-@foreach (var category in Model.Categories.Where(a => a.CategoryForWomen))
+@foreach (var category in Model.Categories)
 {
     <li>
         <a href="@Url.Action("List", "Products", new { nameCategories = category.CategoryName.ToString() })">
@@ -43,7 +43,7 @@
 
 
 
-@foreach (var category in Model.Categories.Where(a => a.CategoryForWomen))
+@foreach (var category in Model.Categories)
 {
     <li>
         <a href="@Url.Action("List", "Products", new { nameCategories = category.CategoryName.ToString() })">

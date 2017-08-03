@@ -8,27 +8,37 @@ using System.Web.Mvc;
 
 
 
+
+
 namespace OnlineShop.Controllers
 {
     public class ProductsController : Controller
     {
-        private ShopContext db = new ShopContext();
-        
+        private ShopContext db =  new ShopContext();
+
         // GET: Products
+
+        
         public ActionResult Index()
         {
-                 return View();
+
+         
+        return View();
         }
+        
 
 
+    
 
-        public ActionResult List(string nameCategories)
+
+    public ActionResult List(string nameCategories)
             {
-          
+            
             var category = db.Categories.Include("Products").Where(k => k.CategoryName.ToUpper() == nameCategories.ToUpper()).Single();
             var products = category.Products.ToList();
             return View(products);
 
+            
       
 
         }
@@ -37,24 +47,24 @@ namespace OnlineShop.Controllers
 
 
 
-        public ActionResult Details(string id)
+        public ActionResult Details(int id)
         {
             var product = db.Products.Find(id);
             return View(product);
         }
 
-        [OutputCache(Duration = 60000)]
+       // [OutputCache(Duration = 60000)]
         [ChildActionOnly]
-        public ActionResult CategoriesMenu(string id)
+        public ActionResult CategoriesMenu()
         {
-            
-            var categories = db.Categories.ToList();
+          
+        var categories = db.Categories.ToList();
             return PartialView("_CategoriesMenu",categories);
 
         }
 
 
+     
 
-
-    }
+}
 }
