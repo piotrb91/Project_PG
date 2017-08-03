@@ -18,11 +18,12 @@ namespace OnlineShop.Controllers
 
             
             var categories = db.Categories.ToList();
-    
+            var recent = db.Products.OrderByDescending(a=>a.DateAdded).Take(9).ToList();
 
             var vm = new HomeViewModel
             {
-                Categories = categories
+                Categories = categories,
+                Recent = recent
 
             };
             //var ListCategories = db.Categories.ToList();

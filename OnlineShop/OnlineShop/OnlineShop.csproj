@@ -135,7 +135,6 @@
     <Content Include="Content\images\trampki2.png" />
     <Content Include="Content\images\zimowe1.png" />
     <Content Include="Content\Site.css" />
-    <Content Include="Default.aspx" />
     <Content Include="Global.asax" />
     <Content Include="Prototype\adidasy_meskie.html" />
     <Content Include="Prototype\eleganckie_meskie.html" />
@@ -166,13 +165,6 @@
     <Compile Include="Controllers\ProductsController.cs" />
     <Compile Include="DAL\ProductsInitializer.cs" />
     <Compile Include="DAL\ShopContext.cs" />
-    <Compile Include="Default.aspx.cs">
-      <DependentUpon>Default.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Default.aspx.designer.cs">
-      <DependentUpon>Default.aspx</DependentUpon>
-    </Compile>
     <Compile Include="GlimpseSecurityPolicy.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>

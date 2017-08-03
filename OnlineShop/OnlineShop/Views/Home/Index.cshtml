@@ -1,5 +1,5 @@
 ﻿@model OnlineShop.ViewModels.HomeViewModel
-
+@using OnlineShop.Infrastructure
 
 @{
     ViewBag.Title = "Shop Online";
@@ -19,14 +19,59 @@
     <div class="row">
         <div class="col-md-12 item text-center"><a href=""><img src="@Url.Content("~/Content/images/logo_meskie.jpg")" alt=""> </a></div>
     </div>
-    </div>
+</div>
 
 
 
 
-@Html.Action("CategoriesMenu1")
+@foreach (var category in Model.Categories.Where(a => a.CategoryForWomen))
+{
+    <li>
+        <a href="@Url.Action("List", "Products", new { nameCategories = category.CategoryName.ToString() })">
+
+            @category.CategoryName
+        </a>
+    </li>
+}
 
 
+
+
+
+
+
+
+
+
+@foreach (var category in Model.Categories.Where(a => a.CategoryForWomen))
+{
+    <li>
+        <a href="@Url.Action("List", "Products", new { nameCategories = category.CategoryName.ToString() })">
+
+            @category.CategoryName
+        </a>
+
+    </li>
+}
+
+
+
+@foreach (var recent in Model.Recent)
+{
+    <li>
+        <article>
+            <a class="addToBasketLink" href="@Url.Action("AddToBasket","Basket", new { id = recent.ProductID})">
+                <img src="" />
+
+
+                <a class="productDetailsLink" href="@Url.Action("Details","Products", new { id = recent.ProductID})">
+                    <img class="product" src="@Url.ImagesPath(recent.NameImageFile)" />
+
+                    @recent.ProductName
+                </a>
+</article>
+    </li>
+}
 
 
 

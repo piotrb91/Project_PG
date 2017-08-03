@@ -9,10 +9,10 @@ namespace OnlineShop.Infrastructure
 {
     public static class UrlHelpers
     {
-        public static string CategoriesLogoPath(this UrlHelper helper, string nameCategoriesLogo)
+        public static string ImagesPath(this UrlHelper helper, string nameImage)
         {
             var ImagesFolder = AppConfig.ImagesFolder;
-            var path = Path.Combine(ImagesFolder, nameCategoriesLogo);
+            var path = Path.Combine(ImagesFolder, nameImage);
             var absolutePath = helper.Content(path);
 
             return absolutePath;

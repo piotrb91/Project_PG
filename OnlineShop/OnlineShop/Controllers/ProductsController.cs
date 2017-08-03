@@ -1,4 +1,5 @@
 ﻿using OnlineShop.DAL;
+using OnlineShop.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,9 +27,11 @@ namespace OnlineShop.Controllers
           
             var category = db.Categories.Include("Products").Where(k => k.CategoryName.ToUpper() == nameCategories.ToUpper()).Single();
             var products = category.Products.ToList();
-                return View(products);
+            return View(products);
 
-            }
+      
+
+        }
 
         
 
@@ -41,15 +44,17 @@ namespace OnlineShop.Controllers
         }
 
         [OutputCache(Duration = 60000)]
+        [ChildActionOnly]
         public ActionResult CategoriesMenu(string id)
         {
             
             var categories = db.Categories.ToList();
             return PartialView("_CategoriesMenu",categories);
+
         }
 
 
-  
+
 
     }
 }

@@ -19,7 +19,7 @@
                     <img src="@Url.Content("~/Content/Images/koszyk.png")" />
                 </a>
                 <a class="productDetailsLink" href="@Url.Action("Details","Products",new { id=product.ProductID})">
-                    <img class="product" src="@Url.CategoriesLogoPath(product.NameImageFile)" />
+                    <img class="product" src="@Url.ImagesPath(product.NameImageFile)" />
                     <h1>
                         Tutaj będzie tytuł
                         @product.ProductName - @product.DateAdded
