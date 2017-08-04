@@ -53,7 +53,7 @@ namespace OnlineShop.Controllers
             return View(product);
         }
 
-       // [OutputCache(Duration = 60000)]
+        [OutputCache(Duration = 60000)]
         [ChildActionOnly]
         public ActionResult CategoriesMenu()
         {

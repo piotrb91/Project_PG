@@ -1,4 +1,6 @@
-﻿using OnlineShop.DAL;
+﻿using MvcSiteMapProvider.Caching;
+using OnlineShop.DAL;
+using OnlineShop.Infrastructure;
 using OnlineShop.Models;
 using OnlineShop.ViewModels;
 using System;
@@ -21,8 +23,53 @@ namespace OnlineShop.Controllers
         {
 
             
-            var categories = db.Categories.ToList();
-            var recent = db.Products.OrderByDescending(a=>a.DateAdded).Take(9);
+            //var categories = db.Categories.ToList();
+
+            ICacheProvider cache = new DefaultCacheProvider();
+
+
+
+
+
+
+
+            List<Category> categories;
+            if (cache.IsSet(Consts.CategoriesCacheKey))
+            {
+                categories = cache.Get(Consts.CategoriesCacheKey) as List<Category>;
+            }
+            else
+            {
+
+                categories = db.Categories.ToList();
+                
+                cache.Set(Consts.CategoriesCacheKey, categories, 120);
+            }
+
+
+
+
+
+
+
+
+          
+
+
+
+
+            List<Product> recent;
+            if (cache.IsSet(Consts.RecentCacheKey))
+            {
+                recent = cache.Get(Consts.RecentCacheKey) as List<Product>;
+            }
+            else
+            {
+                recent = db.Products.OrderByDescending(a => a.DateAdded).Take(9).ToList();
+                cache.Set(Consts.RecentCacheKey, recent, 1);
+            }
+
+            
 
             var vm = new HomeViewModel
            {
