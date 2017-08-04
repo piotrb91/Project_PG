@@ -47,5 +47,13 @@ namespace OnlineShop.Controllers
             
             return RedirectToAction("Index");
         }
+
+
+        
+        public int DownloadQuantityItemsBasket()
+        {
+            
+            return basketManager.DownloadQuantityBasketPositions();
+        }
     }
 }
