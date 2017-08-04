@@ -78,3 +78,32 @@
 
 
 </div>
+
+@section Scripts{
+    @System.Web.Optimization.Scripts.Render("~/bundles/jqueryAndJqueryUI")
+
+
+    <script type="text/javascript">
+
+        $(".deleteProduct").click(function () {
+
+            var recordToDelete = $this.attr("data - id");
+
+            if (recordToDelete != '') {
+                $.post("/Basket/RemoveFromBasket", { "productId": recordToDelete }), function (respons) {
+                    if (respons.QuantityPositionsRemoved == 0) {
+                        $('#basket-row-' + respons.IdPositionRemoved).fadeOut('slow', function () {
+
+                            if (respons.BasketQuantityPositions == 0) {
+                                $("#basket-empty-message").removeClass("hidden");
+                            }
+                        })
+
+                    }
+                }
+            } 
+        })
+
+
+    </script>
+}
