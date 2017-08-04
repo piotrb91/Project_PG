@@ -7,6 +7,12 @@
 
 <h2>Details</h2>
 
+
+
+
+@Html.Action("CategoriesMenu")
+
+@Html.MvcSiteMap().SiteMapPath()
 <section id="SectionProduct">
     <div id="ProductLeft">
 
@@ -20,13 +26,13 @@
             </h1>
           
         </div>
-        <div id="KursCena">
+        <div id="ProductPrice">
             <div>
                 @string.Format("{0:0.##}", Model.Price)<span>PLN</span>
             </div>
             <a href="@Url.Action("AddToBasket", "Basket", new { id=Model.ProductID})"></a>
         </div>
-        <div id="KursOpis">
+        <div id="ProductDescription">
             @Model.ShoeDescribe
         </div>
        </div>
