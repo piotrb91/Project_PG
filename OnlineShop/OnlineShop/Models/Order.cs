@@ -35,7 +35,7 @@ namespace OnlineShop.Models
         public decimal OrderValue { get; set; }
         public DateTime DateAdded { get; set; }
 
-        List<OrderPosition> OrderPositions { get; set; }
+        public List<OrderPosition> OrderPositions { get; set; }
     }
 
 
