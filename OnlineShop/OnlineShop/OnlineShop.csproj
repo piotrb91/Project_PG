@@ -255,6 +255,10 @@
     <Compile Include="Migrations\201708031640332_test.Designer.cs">
       <DependentUpon>201708031640332_test.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201708041512466_test1.cs" />
+    <Compile Include="Migrations\201708041512466_test1.Designer.cs">
+      <DependentUpon>201708041512466_test1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\BasketPosition.cs" />
     <Compile Include="Models\Category.cs" />
@@ -262,6 +266,7 @@
     <Compile Include="Models\Order.cs" />
     <Compile Include="Models\Product.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModels\BasketViewModel.cs" />
     <Compile Include="ViewModels\HomeViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -287,6 +292,7 @@
     <Content Include="Views\Shared\DisplayTemplates\CanonicalHelperModel.cshtml" />
     <Content Include="Scripts\jquery-3.1.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.1.1.min.map" />
+    <Content Include="Views\Basket\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -300,6 +306,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201708031640332_test.resx">
       <DependentUpon>201708031640332_test.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201708041512466_test1.resx">
+      <DependentUpon>201708041512466_test1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

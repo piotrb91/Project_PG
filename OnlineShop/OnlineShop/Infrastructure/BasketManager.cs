@@ -42,10 +42,10 @@ namespace OnlineShop.Infrastructure
         public void AddToBasket(int productID)
         {
             var basket = DownloadBasket();
-            var basketPostion = basket.Find(a => a.Product.ProductID == productID);
+            var basketPosition = basket.Find(a => a.Product.ProductID == productID);
 
-            if (basketPostion != null)
-                basketPostion.Quantity++;
+            if (basketPosition != null)
+                basketPosition.Quantity++;
             else
             {
                 var productToAdd = db.Products.Where(a => a.ProductID == productID).SingleOrDefault();

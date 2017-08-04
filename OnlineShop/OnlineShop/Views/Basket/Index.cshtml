@@ -1,0 +1,80 @@
+﻿@model OnlineShop.ViewModels.BasketViewModel
+    @using OnlineShop.Infrastructure
+
+
+@{
+    ViewBag.Title = "Basket";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div id="CategoriesList">
+
+    @Html.Action("CategoriesMenu","Products")
+
+
+    <div>
+        @Html.MvcSiteMap().SiteMapPath()
+</div>
+
+
+
+</div>
+
+<div>
+
+    <table id="basketTable">
+        @foreach (var basketPosition in Model.BasketPositions)
+        {
+            <tr id="basket-row-@basketPosition.Product.ProductID ">
+                <td>
+                    <a href="@Url.Action("Details", "Products", new { id= basketPosition.Product.ProductID})">
+                    <img src="@Url.Content("~/Content/imgages"+ basketPosition.Product.NameImageFile)"/>
+                    </a>
+                </td>
+
+                <td>
+                    <a href="@Url.Action("Details", "Products", new { id= basketPosition.Product.ProductID})">
+                       @basketPosition.Product.ProductName
+                    </a>
+                </td>
+                <td>
+                    Ilosc: <span id="basket-quantity-positions-@basketPosition.Product.ProductID"> @basketPosition.Quantity</span>
+                </td>
+                <td>
+                    @String.Format("{0:00.##}",basketPosition.Value) zł
+                </td>
+
+                <td>
+                    <a class="deleteProduct" data-id="@basketPosition.Product.ProductID" href="link"> Usun </a>
+                </td>
+
+
+
+            </tr>
+        }
+       
+        <tr id="basket-empty-message" @if (Model.BasketPositions != null && Model.BasketPositions.Count > 0) { <text> class="hidden"</text>}>
+            <td>Twoj koszyk jest pusty. Chcesz cos dodac do koszyka?</td>
+        </tr>
+    </table>
+
+
+
+    <div id="TotalPrice" style="">
+        Razen: <span id="total-price-value">@String.Format("{0:00.##}",Model.TotalPrice)</span> zł
+    </div>
+
+    <div class="SectionButtons">
+        <a class="ButtonLink" href="link"> Chce kupic cos jeszcze </a>
+        @if (Model.TotalPrice > 0)
+        {
+            <a class="ButtonLink" id="basket-button-pay" href="@Url.Action("Pay","Basket")"> Zaplac</a>
+        }
+    </div>
+
+
+
+
+
+</div>
