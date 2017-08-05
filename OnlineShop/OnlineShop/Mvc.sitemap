@@ -5,7 +5,13 @@
 
   <mvcSiteMapNode title="Home" controller="Home" action="Index">
     <mvcSiteMapNode title="Categories" controller="Products" action="List" dynamicNodeProvider="OnlineShop.Infrastructure.CategoriesDynamicNodeProvider, OnlineShop" >
-    <mvcSiteMapNode title="Product" controller="Products" action="Details" dynamicNodeProvider="OnlineShop.Infrastructure.ProductsDetailsDynamicNodeProvider, OnlineShop" />
+      <mvcSiteMapNode title="Product" controller="Products" action="Details" dynamicNodeProvider="OnlineShop.Infrastructure.ProductsDetailsDynamicNodeProvider, OnlineShop" />
+    </mvcSiteMapNode>
+    <mvcSiteMapNode title="Basket" controller="Basket" action="Index">
+      <mvcSiteMapNode title="OrderData" controller="Basket" action="Pay"/>
+        <mvcSiteMapNode title="OrderConfirmation" controller="Basket" action="ConfirmOrder"/>
+      
+</mvcSiteMapNode>
   </mvcSiteMapNode>
-  </mvcSiteMapNode>
+    
 </mvcSiteMap>

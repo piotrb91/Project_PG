@@ -55,5 +55,23 @@ namespace OnlineShop.Controllers
             
             return basketManager.DownloadQuantityBasketPositions();
         }
+
+
+        public ActionResult RemoveFromBasket(int productID)
+        {
+            int quantityPositions = basketManager.RemoveFromBasket(productID);
+            int quantityBasketPositions = basketManager.DownloadQuantityBasketPositions();
+            decimal basketValue = basketManager.DownloadBasketValue();
+
+            var result = new BasketRemoveViewModel
+            {
+                IdPositionRemoved = productID,
+                QuantityPositionsRemoved = quantityPositions,
+                BasketTotalPrice = basketValue,
+                BasketQuantityPositions = quantityBasketPositions
+            };
+
+            return Json(result);
+        }
     }
 }

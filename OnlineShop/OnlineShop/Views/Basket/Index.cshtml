@@ -29,7 +29,7 @@
             <tr id="basket-row-@basketPosition.Product.ProductID ">
                 <td>
                     <a href="@Url.Action("Details", "Products", new { id= basketPosition.Product.ProductID})">
-                    <img src="@Url.Content("~/Content/imgages"+ basketPosition.Product.NameImageFile)"/>
+                    <img src="@Url.Content("~/Content/images"+ basketPosition.Product.NameImageFile)"/>
                     </a>
                 </td>
 
@@ -39,14 +39,14 @@
                     </a>
                 </td>
                 <td>
-                    Ilosc: <span id="basket-quantity-positions-@basketPosition.Product.ProductID"> @basketPosition.Quantity</span>
+                    Ilosc: <span id="basket-quantity-positions-@basketPosition.Product.ProductID"> @basketPosition.Quantity </span>
                 </td>
                 <td>
-                    @String.Format("{0:00.##}",basketPosition.Value) zł
+                    @String.Format("{0:00.##}", basketPosition.Value) zł
                 </td>
 
                 <td>
-                    <a class="deleteProduct" data-id="@basketPosition.Product.ProductID" href="link"> Usun </a>
+                    <a class="deleteProduct" data-id="@basketPosition.Product.ProductID" href="#"> Usun </a>
                 </td>
 
 
@@ -62,11 +62,11 @@
 
 
     <div id="TotalPrice" style="">
-        Razen: <span id="total-price-value">@String.Format("{0:00.##}",Model.TotalPrice)</span> zł
+        Razem: <span id="total-price-value">@String.Format("{0:00.##}",Model.TotalPrice)</span> zł
     </div>
 
     <div class="SectionButtons">
-        <a class="ButtonLink" href="link"> Chce kupic cos jeszcze </a>
+        <a class="ButtonLink" href="@Url.Content("~/")"> Chce kupic cos jeszcze </a>
         @if (Model.TotalPrice > 0)
         {
             <a class="ButtonLink" id="basket-button-pay" href="@Url.Action("Pay","Basket")"> Zaplac</a>
@@ -84,26 +84,36 @@
 
 
     <script type="text/javascript">
+        $(function () {
 
         $(".deleteProduct").click(function () {
 
-            var recordToDelete = $this.attr("data - id");
+            var recordToDelete = $this.attr("data-id");
 
             if (recordToDelete != '') {
-                $.post("/Basket/RemoveFromBasket", { "productId": recordToDelete }), function (respons) {
-                    if (respons.QuantityPositionsRemoved == 0) {
-                        $('#basket-row-' + respons.IdPositionRemoved).fadeOut('slow', function () {
+                $.post("/Basket/RemoveFromBasket", { "productID": recordToDelete },
+                    function (response) {
+                    if (response.QuantityPositionsRemoved == 0) {
+                        $('#basket-row-' + response.IdPositionRemoved).fadeOut('slow', function () {
 
-                            if (respons.BasketQuantityPositions == 0) {
+                            if (response.BasketQuantityPositions == 0) {
                                 $("#basket-empty-message").removeClass("hidden");
                             }
-                        })
-
+                        });
+                    } else {
+                        $('#basket-quantity-positions-' + response.IdPositionRemoved).text(response.QuantityPositionsRemoved);
                     }
+
+                    if (response.BasketQuantityPositions == 0) {
+                        $('#basket-button-pay').addClass('hidden');
+                        $('#TotalPrice').addClass('invisible');
+                    }
+                    $('#total-price-value').text(response.BasketTotalPrice);
+                    $('#basket-header-quantity-items').text(response.BasketQuantityPositions);
+                });
+        return false;
                 }
-            } 
-        })
-
-
-    </script>
+            });
+        });
+</script>
 }

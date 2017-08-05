@@ -74,7 +74,7 @@
                     <li><a href="@Url.Action("StaticSites","Home", new { name = "Contact"})">Kontakt</a></li>
 
                     <li>
-                        <a id="koszykHeaderLink" href="link">
+                        <a id="koszykHeaderLink" href="@Url.Action("Index", "Basket")">
                             Koszyk (<span id="basket-header-quantity-items">@Html.Action("DownloadQuantityItemsBasket","Basket")</span>)
                         </a>
                         <span></span>
