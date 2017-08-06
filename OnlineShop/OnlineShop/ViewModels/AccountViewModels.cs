@@ -32,7 +32,7 @@ namespace OnlineShop.ViewModels
 
 
         [Required]
-        [StringLength(20,ErrorMessage ="{0} musi miec co najmniej {2} znajkow!", MinimumLength = 5 )]
+        [StringLength(20,ErrorMessage ="{0} musi miec co najmniej {2} znakow!", MinimumLength = 6 )]
         [DataType(DataType.Password)]
         [Display(Name = "Haslo")]
         public string Password { get; set; }
