@@ -112,7 +112,7 @@ namespace OnlineShop.Infrastructure
         {
             var basket = DownloadBasket();
             newOrder.DateAdded = DateTime.Now;
-            // newOrder.userId = userId;
+            newOrder.UserId = userId;
 
             db.Orders.Add(newOrder);
             
