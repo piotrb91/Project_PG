@@ -269,6 +269,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BasketController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\ProductsController.cs" />
     <Compile Include="DAL\ProductsInitializer.cs" />
     <Compile Include="DAL\ShopContext.cs" />
@@ -312,6 +313,7 @@
     <Compile Include="ViewModels\BasketRemoveViewModel.cs" />
     <Compile Include="ViewModels\BasketViewModel.cs" />
     <Compile Include="ViewModels\HomeViewModel.cs" />
+    <Compile Include="ViewModels\ManageViewModels.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />
@@ -343,6 +345,8 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Basket\Pay.cshtml" />
     <Content Include="Views\Basket\OrderConfirmation.cshtml" />
+    <Content Include="Views\Manage\Index.cshtml" />
+    <Content Include="Views\Shared\_ManageLayout.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
