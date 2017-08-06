@@ -1,5 +1,5 @@
 ﻿@model OnlineShop.ViewModels.BasketViewModel
-    @using OnlineShop.Infrastructure
+@using OnlineShop.Infrastructure
 
 
 @{
@@ -24,9 +24,12 @@
 <div>
 
     <table id="basketTable">
+
+
+
         @foreach (var basketPosition in Model.BasketPositions)
         {
-            <tr id="basket-row-@basketPosition.Product.ProductID ">
+            <tr id="basket-row-@basketPosition.Product.ProductID">
                 <td>
                     <a href="@Url.Action("Details", "Products", new { id= basketPosition.Product.ProductID})">
                     <img src="@Url.Content("~/Content/images"+ basketPosition.Product.NameImageFile)"/>
@@ -52,11 +55,12 @@
 
 
             </tr>
+
         }
-       
-        <tr id="basket-empty-message" @if (Model.BasketPositions != null && Model.BasketPositions.Count > 0) { <text> class="hidden"</text>}>
+        <tr id="basket-empty-message" @if (Model.BasketPositions != null && Model.BasketPositions.Count > 0) { <text> class="hidden" </text>  }>
             <td>Twoj koszyk jest pusty. Chcesz cos dodac do koszyka?</td>
         </tr>
+      
     </table>
 
 
@@ -86,34 +90,34 @@
     <script type="text/javascript">
         $(function () {
 
-        $(".deleteProduct").click(function () {
+            $(".deleteProduct").click(function () {
 
-            var recordToDelete = $this.attr("data-id");
+                var recordToDelete = $(this).attr("data-id");
 
-            if (recordToDelete != '') {
-                $.post("/Basket/RemoveFromBasket", { "productID": recordToDelete },
-                    function (response) {
-                    if (response.QuantityPositionsRemoved == 0) {
-                        $('#basket-row-' + response.IdPositionRemoved).fadeOut('slow', function () {
+                if (recordToDelete !='') {
+                    $.post("/Basket/RemoveFromBasket", { "productID": recordToDelete },
+                        function (response) {
+                            if (response.QuantityPositionsRemoved == 0) {
+                                $('#basket-row-'+response.IdPositionRemoved).fadeOut('slow', function () {
+
+                                    if (response.BasketQuantityPositions == 0) {
+                                        $("#basket-empty-message").removeClass("hidden");
+                                    }
+                                });
+                            } else {
+                                $('#basket-quantity-positions-' + response.IdPositionRemoved).text(response.QuantityPositionsRemoved);
+                            }
 
                             if (response.BasketQuantityPositions == 0) {
-                                $("#basket-empty-message").removeClass("hidden");
+                                $('#basket-button-pay').addClass('hidden');
+                                $('#TotalPrice').addClass('invisible');
                             }
+                            $('#total-price-value').text(response.BasketTotalPrice);
+                            $('#basket-header-quantity-items').text(response.BasketQuantityPositions);
                         });
-                    } else {
-                        $('#basket-quantity-positions-' + response.IdPositionRemoved).text(response.QuantityPositionsRemoved);
-                    }
-
-                    if (response.BasketQuantityPositions == 0) {
-                        $('#basket-button-pay').addClass('hidden');
-                        $('#TotalPrice').addClass('invisible');
-                    }
-                    $('#total-price-value').text(response.BasketTotalPrice);
-                    $('#basket-header-quantity-items').text(response.BasketQuantityPositions);
-                });
-        return false;
+                    return false;
                 }
             });
         });
-</script>
+    </script>
 }

@@ -83,6 +83,7 @@ namespace OnlineShop.Infrastructure
                 }
                 else
                 {
+                    
                     basket.Remove(basketPosition);
                 }
             }
@@ -116,6 +117,7 @@ namespace OnlineShop.Infrastructure
             db.Orders.Add(newOrder);
             
             if (newOrder.OrderPositions == null)
+
             
                 newOrder.OrderPositions = new List<OrderPosition>();
                 decimal basketValue = 0;
