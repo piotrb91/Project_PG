@@ -1,0 +1,27 @@
+﻿
+@{
+    
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>_RightSectionLayout</h2>
+
+<div id="CategoriesList">
+
+    @Html.Action("CategoriesMenu", "Products")
+
+
+    <div>
+        @Html.MvcSiteMap().SiteMapPath()
+    </div>
+</div>
+
+@RenderSection("SectionTitle", required: false)
+
+@RenderBody()
+
+@section Scripts 
+{
+    @RenderSection("Scripts", required: false)
+  
+    }
