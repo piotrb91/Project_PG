@@ -6,81 +6,88 @@
 
 
 
-<div id="CategoriesList">
-
-    @Html.Action("CategoriesMenu")
-
-
-    <div>
-        @Html.MvcSiteMap().SiteMapPath()
+    <div id="CatgoriesList">
+        @Html.Action("CategoriesMenu")
+        <div id="CategoriesListRightSection">
 
 
-        <form id="search-form" method="get" data-ajax="true" data-ajax-target="#SectionListCategories">
-            <input id="search-filter" type="search" name="searchQuery"
-                   data-autocomplete-source="@Url.Action("ProductsTips")"
-                   placeholder="Wprowadz tekst" />
-            <input type="submit" value="" /> 
-        </form>
+            <div>
+                <a href="link">
+                    @Html.MvcSiteMap().SiteMapPath()
+                </a>
+
+                <form id="search-form" method="get" data-ajax="true" data-ajax-target="#SectionProductsList">
+                    <input id="search-filter" type="search" name="searchQuery"
+                           data-autocomplete-source="@Url.Action("ProductsTips")"
+                           placeholder="Wprowadz tekst" />
+                    <input type="submit" value="" />
+                </form>
+
+
+
+            </div>
+
+
+            <div id="SectionProductsList">
+                @Html.Partial("_ProductsList")
+            </div>
+            
+        </div>
     </div>
-    
-    <div id="SectionListCategories">
-        @Html.Partial("_ProductsList")
-    </div>
-
-</div>
 
 
 
 
-@section Scripts
+
+    @section Scripts
 {
-    @System.Web.Optimization.Scripts.Render("~/bundles/jqueryAndJqueryUI")
+        @System.Web.Optimization.Scripts.Render("~/bundles/jqueryAndJqueryUI")
 
-    <script>
-        $(function () {
+        <script>
+            $(function () {
 
-            var setupAutoComplete = function () {
-                var $input = $(this);
+                var setupAutoComplete = function () {
+                    var $input = $(this);
 
-                var options =
-                    {
-                        source: $input.attr("data-autocomplete-source"),
-                        select: function (event, ui) {
-                            $input = $(this);
-                            $input.val(ui.item.label);
-                            var $form = $input.parents("form:first");
-                            $form.submit();
-                        }
-                    };
+                    var options =
+                        {
+                            source: $input.attr("data-autocomplete-source"),
+                            select: function (event, ui) {
+                                $input = $(this);
+                                $input.val(ui.item.label);
+                                var $form = $input.parents("form:first");
+                                $form.submit();
+                            }
+                        };
 
-                $input.autocomplete(options);
-            };
-
-            var ajaxSubmit = function () {
-
-                var $form = $(this);
-
-                var settings = {
-                    data: $(this).serialize(),
-                    url: $(this).attr("action"),
-                    type: $(this).attr("method")
+                    $input.autocomplete(options);
                 };
 
-                $.ajax(settings).done(function (result) {
-                    var $targetElement = $($form.data("ajax-target"));
-                    var $newContent = $(result);
-                    $($targetElement).replaceWith($newContent);
-                    $newContent.effect("slide");
-                });
+                var ajaxSubmit = function () {
 
-                return false;
-            };
+                    var $form = $(this);
 
-            $("#search-filter").each(setupAutoComplete);
-            $("#search-form").submit(ajaxSubmit);
-        });
-    </script>
+                    var settings = {
+                        data: $(this).serialize(),
+                        url: $(this).attr("action"),
+                        type: $(this).attr("method")
+                    };
+
+                    $.ajax(settings).done(function (result) {
+                        var $targetElement = $($form.data("ajax-target"));
+                        var $newContent = $(result);
+                        $($targetElement).replaceWith($newContent);
+                        $newContent.effect("slide");
+                    });
+
+                    return false;
+                };
+
+                $("#search-filter").each(setupAutoComplete);
+                $("#search-form").submit(ajaxSubmit);
+            });
+        </script>
 
 
 
-}
+    }

@@ -41,7 +41,7 @@ namespace OnlineShop.Controllers
             else
             {
 
-                categories = db.Categories.ToList();
+                categories = db.Categories.OrderBy(a => a.CategoryName).ToList();
                 
                 cache.Set(Consts.CategoriesCacheKey, categories, 120);
             }
@@ -65,7 +65,7 @@ namespace OnlineShop.Controllers
             }
             else
             {
-                recent = db.Products.OrderByDescending(a => a.DateAdded).Take(9).ToList();
+                recent = db.Products.OrderByDescending(a => a.DateAdded).Take(6).ToList();
                 cache.Set(Consts.RecentCacheKey, recent, 1);
             }
 

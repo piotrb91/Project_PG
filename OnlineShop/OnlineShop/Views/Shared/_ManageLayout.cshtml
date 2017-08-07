@@ -74,10 +74,13 @@
                     <li><a href="@Url.Action("StaticSites","Home", new { name = "Contact"})">Kontakt</a></li>
 
                     <li>
-                        <a id="koszykHeaderLink" href="@Url.Action("Index", "Basket")">
+                        <a id="basketHeaderLink" href="@Url.Action("Index", "Basket")">
                             Koszyk (<span id="basket-header-quantity-items">@Html.Action("DownloadQuantityItemsBasket", "Basket")</span>)
                         </a>
                         <span></span>
+                    </li>
+                    <li>
+                        @Html.Partial("_LoginPartial")
                     </li>
 
 
@@ -114,20 +117,21 @@
                     <a id="indexHeaderLogo">
                         <img src="@Url.Content("~/Content/images/logo.png")" class="center" />
                     </a>
-                    @Html.Partial("_LoginPartial")
+                  
 
 
                     <div style="overflow: hidden; margin-bottom: 30px;">
-                        <a class="manageLink" href="@Url.Action("Index", "Home")">
-                            Start
-                        </a>
-                        <a class="manageLink" href="@Url.Action("Index", "Manage")">
-                            Twoje dane
-                        </a>
+                        @Html.MvcSiteMap().SiteMapPath()
+                    </div>
+                        <div style="overflow: hidden; margin-bottom: 30px;">
+                            
+                            <a class="manageLink" href="@Url.Action("Index", "Manage")">
+                                Twoje dane
+                            </a>
                         </div>
 
 
-                    @Html.MvcSiteMap().SiteMapPath()
+
 
 
 

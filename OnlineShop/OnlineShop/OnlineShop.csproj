@@ -164,6 +164,11 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\images\adidasy1.png" />
     <Content Include="Content\images\adidasy2.png" />
+    <Content Include="Content\images\adidasyd1.png" />
+    <Content Include="Content\images\adidasyd2.png" />
+    <Content Include="Content\images\basket.png" />
+    <Content Include="Content\images\botki1.png" />
+    <Content Include="Content\images\botki2.png" />
     <Content Include="Content\images\eleganckie1.png" />
     <Content Include="Content\images\eleganckie2.png" />
     <Content Include="Content\images\eleganckie3.png" />
@@ -173,11 +178,20 @@
     <Content Include="Content\images\klapki2.png" />
     <Content Include="Content\images\klapki3.png" />
     <Content Include="Content\images\klapki4.png" />
+    <Content Include="Content\images\klapkid1.png" />
+    <Content Include="Content\images\klapkid2.png" />
     <Content Include="Content\images\logo.png" />
     <Content Include="Content\images\logo_damskie.jpg" />
     <Content Include="Content\images\logo_meskie.jpg" />
+    <Content Include="Content\images\nowosci.png" />
+    <Content Include="Content\images\nowosci1.png" />
+    <Content Include="Content\images\nowosci2.png" />
+    <Content Include="Content\images\obcas1.png" />
+    <Content Include="Content\images\obcas2.png" />
+    <Content Include="Content\images\obcas3.png" />
     <Content Include="Content\images\sandaly1.png" />
     <Content Include="Content\images\sandaly2.png" />
+    <Content Include="Content\images\sandalyd1.png" />
     <Content Include="Content\images\sportowe1.png" />
     <Content Include="Content\images\sportowe2.png" />
     <Content Include="Content\images\trampki1.png" />
@@ -299,6 +313,14 @@
     <Compile Include="Migrations\201708062014292_orders.Designer.cs">
       <DependentUpon>201708062014292_orders.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201708062243152_ShoeSize.cs" />
+    <Compile Include="Migrations\201708062243152_ShoeSize.Designer.cs">
+      <DependentUpon>201708062243152_ShoeSize.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201708071303246_DeleteShoeSize.cs" />
+    <Compile Include="Migrations\201708071303246_DeleteShoeSize.Designer.cs">
+      <DependentUpon>201708071303246_DeleteShoeSize.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\BasketPosition.cs" />
     <Compile Include="Models\Category.cs" />
@@ -367,6 +389,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201708062014292_orders.resx">
       <DependentUpon>201708062014292_orders.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201708062243152_ShoeSize.resx">
+      <DependentUpon>201708062243152_ShoeSize.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201708071303246_DeleteShoeSize.resx">
+      <DependentUpon>201708071303246_DeleteShoeSize.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

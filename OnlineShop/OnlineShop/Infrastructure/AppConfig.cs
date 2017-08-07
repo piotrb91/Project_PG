@@ -9,12 +9,12 @@ namespace OnlineShop.Infrastructure
     public class AppConfig
     {
 
-        private static string _imagesFolder = ConfigurationManager.AppSettings["ImagesFolder"];
-        public static string ImagesFolder
+        private static string _imagesFolderRelative = ConfigurationManager.AppSettings["ImagesFolder"];
+        public static string ImagesFolderRelative
         {
             get
             {
-                return _imagesFolder;
+                return _imagesFolderRelative;
             }
         }
 

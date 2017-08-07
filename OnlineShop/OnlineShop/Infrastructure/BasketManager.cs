@@ -56,7 +56,8 @@ namespace OnlineShop.Infrastructure
                     {
                         Product = productToAdd,
                         Quantity = 1,
-                        Value = productToAdd.Price
+                        Value = productToAdd.Price,
+
                     };
 
                     basket.Add(newBasketPosition);

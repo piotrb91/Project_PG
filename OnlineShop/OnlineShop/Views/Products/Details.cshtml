@@ -5,40 +5,62 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Details</h2>
+
+<div id="CatgoriesList">
+    @Html.Action("CategoriesMenu")
+
+    <div id="CategoriesListRightSection">
+        <div>
+            <a href="link">
+                @Html.MvcSiteMap().SiteMapPath()
+            </a>
+        </div>
+
+
+        <section id="SectionProduct">
+            <div id="ProductLeft">
+
+                <img src="@Url.ImagesPath(Model.NameImageFile)" />
+            </div>
+
+            <div id="ProductRight">
 
 
 
 
-@Html.Action("CategoriesMenu")
 
-@Html.MvcSiteMap().SiteMapPath()
-<section id="SectionProduct">
-    <div id="ProductLeft">
 
-        <img src="@Url.ImagesPath(Model.NameImageFile)" />
+                <div id="ProductName">
+                    <h1>
+                        @Model.ProductName
+                    </h1>
+
+                </div>
+                <div id="ProductPrice">
+                    <div>
+                        @string.Format("{0:0.##}", Model.Price)<span>PLN</span>
+                    </div>
+                    <a class="addToBasketLink"
+                       href="@Url.Action("AddToBasket","Basket",new { id=Model.ProductID})">
+                        <img src="@Url.Content("~/Content/Images/basket.png")" />
+                    </a>
+
+
+                    <a href="@Url.Action("AddToBasket", "Basket", new { id=Model.ProductID})"></a>
+                </div>
+                <div id="ProductDescription">
+                    @Model.ShoeDescribe
+                </div>
+            </div>
+        </section>
+        </div>
     </div>
 
-    <div id="ProductRight">
-        <div id="ProductName">
-            <h1>
-                @Model.ProductName
-            </h1>
-          
-        </div>
-        <div id="ProductPrice">
-            <div>
-                @string.Format("{0:0.##}", Model.Price)<span>PLN</span>
-            </div>
-            <a href="@Url.Action("AddToBasket", "Basket", new { id=Model.ProductID})"></a>
-        </div>
-        <div id="ProductDescription">
-            @Model.ShoeDescribe
-        </div>
-       </div>
-</section>
+        @using (Html.BeginForm("", "Basket"))
+            {
+            @Html.AntiForgeryToken()
+            @Html.HiddenFor(model => model.ProductID)
+            @Html.DropDownList("shoesize", Enumerable.Range(35, 10).Select(i => new SelectListItem { Text = i.ToString(), Value = i.ToString() }))
 
-
-
-
+        }
 

@@ -66,7 +66,7 @@ namespace OnlineShop.Controllers
         public ActionResult CategoriesMenu()
         {
           
-        var categories = db.Categories.ToList();
+        var categories = db.Categories.OrderBy(a => a.CategoryName).ToList();
             return PartialView("_CategoriesMenu",categories);
 
         }

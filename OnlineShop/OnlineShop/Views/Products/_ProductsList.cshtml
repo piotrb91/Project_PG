@@ -4,39 +4,29 @@
 
 
 
-<div id="SectionCategoriesList">
-    <ul class="Products ProductPrice">
+<div id="SectionProductsList">
+    <ul class="ProductsListSmall">
         @foreach (var product in Model)
         {
             <li>
                 <article>
-                    <a class="addToBasketLink" href="@Url.Action("AddToBasket","Basket",new { id=product.ProductID})">
-                        <img src="@Url.Content("~/Content/Images/koszyk.png")" />
-                    </a>
-                    <a class="productDetailsLink" href="@Url.Action("Details","Products",new { id=product.ProductID})">
-                        <img class="product" src="@Url.ImagesPath(product.NameImageFile)" />
-                        <h1>
-                            @product.ProductName - @product.DateAdded
-                        </h1>
-                    </a>
+                   
+                       
+                        <a class="productDetailsLink" href="@Url.Action("Details","Products",new { id=product.ProductID})">
+                            <img class="product" src="@Url.ImagesPath(product.NameImageFile)" />
+                            <h3>
+                                @product.ProductName
+                            </h3>
+                        </a>
+                   
                 </article>
-            </li>
-        }
-    </ul>
-    </div>
+                </li>
+                }
+        </ul>
+</div>
 
-<select name="rozmiar">
-    <option value="35">35</option>
-    <option value="36">36</option>
-    <option value="37">37</option>
-    <option value="38">38</option>
-</select> 
 
-<form action="myservlet.do" method="POST">
-    <select name="myselect" id="myselect" onchange="this.form.submit()">
-        <option value="1">One</option>
-        <option value="2">Two</option>
-        <option value="3">Three</option>
-        <option value="4">Four</option>
-    </select>
-</form>
+
+
+
+

@@ -10,7 +10,7 @@
 
     <!-- Bootstrap -->
     <link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
-
+    <link href="@Url.Content("~/Content/Site.css")" rel="stylesheet" />
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -22,6 +22,8 @@
 
     <style>
         .item {
+
+            
             padding: 25px;
             transition: all .3s;
             -webkit-transition: all .3s;
@@ -74,16 +76,20 @@
                     <li><a href="@Url.Action("StaticSites","Home", new { name = "Contact"})">Kontakt</a></li>
 
                     <li>
-                        <a id="koszykHeaderLink" href="@Url.Action("Index", "Basket")">
+                        <a id="basketHeaderLink" href="@Url.Action("Index", "Basket")">
                             Koszyk (<span id="basket-header-quantity-items">@Html.Action("DownloadQuantityItemsBasket","Basket")</span>)
                         </a>
                         <span></span>
                     </li>
 
-
+                    <li>
+                        @Html.Partial("_LoginPartial")
+                        </li>
 
 
                 </ul>
+
+               
             </div><!--/.nav-collapse -->
         </div>
     </nav>
@@ -114,21 +120,21 @@
                 <a id="indexHeaderLogo">
                     <img src="@Url.Content("~/Content/images/logo.png")" class="center" />
                 </a>
-                @Html.Partial("_LoginPartial")
+                
             </header>
 
 
         </div>
 
     </div>
-
+        </div>
 
 
     <div>
         @RenderBody()
     </div>
 
-    </div>
+    
 
 
 

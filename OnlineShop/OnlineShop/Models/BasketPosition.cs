@@ -12,5 +12,12 @@ namespace OnlineShop.Models
         public int Quantity { get; set; }
         public decimal Value { get; set; }
 
+
+       
+
+        
+        
+
+
     }
 }

@@ -11,7 +11,7 @@ namespace OnlineShop.Infrastructure
     {
         public static string ImagesPath(this UrlHelper helper, string nameImage)
         {
-            var ImagesFolder = AppConfig.ImagesFolder;
+            var ImagesFolder = AppConfig.ImagesFolderRelative;
             var path = Path.Combine(ImagesFolder, nameImage);
             var absolutePath = helper.Content(path);
 

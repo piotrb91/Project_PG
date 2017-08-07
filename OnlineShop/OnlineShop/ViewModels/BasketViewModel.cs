@@ -11,5 +11,6 @@ namespace OnlineShop.ViewModels
         public List<BasketPosition> BasketPositions { get; set; }
         public decimal TotalPrice { get; set; }
 
+
     }
 }

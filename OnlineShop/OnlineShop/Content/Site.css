@@ -16,3 +16,94 @@ textarea {
     max-width: 280px;
 }
 
+
+
+
+
+
+
+
+#RecentMainPage {
+    margin-left: 50px;
+    float: left;
+    width: 700px;
+    font-size: 14px;
+    font-family: 'Segoe UI Semibold', 'Segoe WP', 'Segoe UI';
+}
+
+
+
+
+
+
+nav.CategoriesVertical {
+    width: 200px;
+    font-size: 14px;
+    font-family: 'Segoe UI Semibold', 'Segoe WP', 'Segoe UI';
+    border-right: 1px solid #E5E5E5;
+    float: left;
+    height: 1400px;
+    margin-left:100px;
+}
+
+    nav.CategoriesVertical ul li {
+        height: 50px;
+        line-height: 150px;
+    }
+
+        nav.CategoriesVertical ul li:hover {
+            background-color: #EBEBEB;
+        }
+
+        nav.CategoriesVertical ul li a {
+            width: 100%;
+            display: block;
+            height: 100%;
+            padding-left: 75px;
+            background-repeat: no-repeat;
+            background-position-x: 5px;
+            background-position-y: 50%;
+            
+        }
+
+    nav.CategoriesVertical a {
+        font-size: 16px;
+        color: #696969;
+        
+    }
+            
+         
+    #SectionProductsList{
+    width: 750px;
+    margin-top: 20px;
+}
+       
+
+
+
+ul.ProductsListSmall {
+    overflow: hidden;
+    list-style-type: none;
+    font-size: 18px;
+}
+
+    ul.ProductsListSmall li {
+        float: left;
+        position: relative;
+        
+    }
+
+        ul.ProductsListSmall li article {
+            height: 100%;
+        }
+
+
+#CategoriesListRightSection{
+    margin-left: 50px;
+    float: left;
+}
+
+#SectionProduct {
+    margin-left: 50px;
+    float: left;
+}
