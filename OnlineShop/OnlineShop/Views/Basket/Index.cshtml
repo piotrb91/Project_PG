@@ -32,7 +32,7 @@
             <tr id="basket-row-@basketPosition.Product.ProductID">
                 <td>
                     <a href="@Url.Action("Details", "Products", new { id= basketPosition.Product.ProductID})">
-                    <img src="@Url.Content("~/Content/images"+ basketPosition.Product.NameImageFile)"/>
+                    <img src="@Url.Content("~/Content/images/"+basketPosition.Product.NameImageFile)"/>
                     </a>
                 </td>
 
