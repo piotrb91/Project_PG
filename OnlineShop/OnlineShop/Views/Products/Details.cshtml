@@ -10,7 +10,7 @@
     @Html.Action("CategoriesMenu")
 
     <div id="CategoriesListRightSection">
-        <div>
+        <div id="MvcSiteMap">
             <a href="link">
                 @Html.MvcSiteMap().SiteMapPath()
             </a>
@@ -37,17 +37,35 @@
 
                 </div>
                 <div id="ProductPrice">
-                    <div>
-                        @string.Format("{0:0.##}", Model.Price)<span>PLN</span>
-                    </div>
+                    <div id="ProductPriceLeft">
+                     Cena:     @string.Format("{0:0.##}", Model.Price)<span>PLN</span>
+                    </div> 
+                    <div id="AddToBasketLink">
                     <a class="addToBasketLink"
                        href="@Url.Action("AddToBasket","Basket",new { id=Model.ProductID})">
                         <img src="@Url.Content("~/Content/Images/basket.png")" />
                     </a>
-
-
-                    <a href="@Url.Action("AddToBasket", "Basket", new { id=Model.ProductID})"></a>
+                        </div>
+                   
                 </div>
+
+
+
+                Rozmiar:
+                @using (Html.BeginForm("", "Basket"))
+            {
+                    @Html.AntiForgeryToken()
+                    @Html.HiddenFor(model => model.ProductID)
+                    @Html.DropDownList("shoesize", Enumerable.Range(35, 10).Select(i => new SelectListItem { Text = i.ToString(), Value = i.ToString() }))
+
+                }
+
+
+
+
+
+
+
                 <div id="ProductDescription">
                     @Model.ShoeDescribe
                 </div>
@@ -56,11 +74,5 @@
         </div>
     </div>
 
-        @using (Html.BeginForm("", "Basket"))
-            {
-            @Html.AntiForgeryToken()
-            @Html.HiddenFor(model => model.ProductID)
-            @Html.DropDownList("shoesize", Enumerable.Range(35, 10).Select(i => new SelectListItem { Text = i.ToString(), Value = i.ToString() }))
-
-        }
+        
 

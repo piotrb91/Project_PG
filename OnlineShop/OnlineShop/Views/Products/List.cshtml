@@ -11,21 +11,23 @@
         <div id="CategoriesListRightSection">
 
 
-            <div>
+            <div id="MvcSiteMap">
                 <a href="link">
                     @Html.MvcSiteMap().SiteMapPath()
+
                 </a>
-
-                <form id="search-form" method="get" data-ajax="true" data-ajax-target="#SectionProductsList">
-                    <input id="search-filter" type="search" name="searchQuery"
-                           data-autocomplete-source="@Url.Action("ProductsTips")"
-                           placeholder="Wprowadz tekst" />
-                    <input type="submit" value="" />
-                </form>
-
-
-
             </div>
+            <div id="SearchForm">
+            <form id="search-form" method="get" data-ajax="true" data-ajax-target="#SectionProductsList">
+                <input id="search-filter" type="search" name="searchQuery"
+                       data-autocomplete-source="@Url.Action("ProductsTips")"
+                       placeholder="Wprowadz tekst" />
+                <input type="submit" value="" />
+            </form>
+        </div>
+                <br>
+
+            
 
 
             <div id="SectionProductsList">
