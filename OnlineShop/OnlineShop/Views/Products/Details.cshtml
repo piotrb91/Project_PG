@@ -38,29 +38,31 @@
                 </div>
                 <div id="ProductPrice">
                     <div id="ProductPriceLeft">
-                     Cena:     @string.Format("{0:0.##}", Model.Price)<span>PLN</span>
-                    </div> 
+                        Cena:     @string.Format("{0:0.##}", Model.Price)<span>PLN</span>
+                    </div>
                     <div id="AddToBasketLink">
-                    <a class="addToBasketLink"
-                       href="@Url.Action("AddToBasket","Basket",new { id=Model.ProductID})">
-                        <img src="@Url.Content("~/Content/Images/basket.png")" />
-                    </a>
-                        </div>
-                   
+                        <a class="addToBasketLink"
+                           href="@Url.Action("AddToBasket","Basket",new { id=Model.ProductID})">
+                            <img src="@Url.Content("~/Content/Images/basket.png")" />
+                        </a>
+                    </div>
+
                 </div>
 
 
+                <div id="ProductSize">
+                    <p> Rozmiar: </p>
 
-                Rozmiar:
-                @using (Html.BeginForm("", "Basket"))
+
+                    @using (Html.BeginForm("", "Basket"))
             {
-                    @Html.AntiForgeryToken()
-                    @Html.HiddenFor(model => model.ProductID)
-                    @Html.DropDownList("shoesize", Enumerable.Range(35, 10).Select(i => new SelectListItem { Text = i.ToString(), Value = i.ToString() }))
+                        @Html.AntiForgeryToken()
+                        @Html.HiddenFor(model => model.ProductID)
+                        @Html.DropDownList("shoesize", Enumerable.Range(35, 10).Select(i => new SelectListItem { Text = i.ToString(), Value = i.ToString() }))
 
-                }
+                    }
 
-
+                </div>
 
 
 
@@ -71,8 +73,8 @@
                 </div>
             </div>
         </section>
-        </div>
     </div>
 
+</div>
         
 
