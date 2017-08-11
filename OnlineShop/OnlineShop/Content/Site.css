@@ -193,8 +193,9 @@ ul.ProductsListSmall {
 
 
 #ProductDescription{
-    font-size: 34px;
+    font-size: 24px;
    // margin-left: 135px;
+   padding-left:350px;
    
     
 }
@@ -238,4 +239,67 @@ footer {
     text-align: center;
     clear:both;
    
+}
+
+
+
+
+
+#Contact, #AboutUs {
+    
+    padding: 55px 55px 55px 95px;
+}
+
+
+#Basket {
+    // padding: 90px 55px 55px 330px;
+    float: left;
+    padding: 30px 30px 25px 50px;
+  
+}
+
+#basketTable {
+    // width: 100%;
+    // border-spacing: 200px 100px;
+    // border-collapse: collapse;
+}
+
+    #basketTable tr td {
+         padding-top: 25px;
+         padding-bottom: 25px;
+       vertical-align: middle;
+        border-spacing: 150px 150px;
+        border-collapse: collapse;
+        width: 165px;
+       
+        float: left;
+        padding: 30px 30px 55px 0px;
+    }
+
+        #basketTable tr td img {
+            float: left;
+            width: 150px;
+        }
+
+#TotalPrice {
+    font-size: 26px;
+    padding-bottom:10px;
+    padding-top:10px;
+}
+
+
+#basket-empty-message {
+    width: 365px;
+}
+
+
+.ButtonLink {
+    padding-right: 40px;
+    float: left;
+}
+
+#Login {
+    padding-top:100px;
+    
+
 }

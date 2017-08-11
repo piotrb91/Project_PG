@@ -21,7 +21,7 @@
 
 </div>
 
-<div>
+<div id="Basket">
 
     <table id="basketTable">
 
@@ -57,6 +57,10 @@
                </tr>
 
         }
+
+        </table>
+       
+    <table id="basketOption">
         <tr id="basket-empty-message" @if (Model.BasketPositions != null && Model.BasketPositions.Count > 0) { <text> class="hidden" </text>  }>
             <td>Twoj koszyk jest pusty. Chcesz cos dodac do koszyka?</td>
         </tr>
@@ -65,12 +69,12 @@
 
 
 
-    <div id="TotalPrice" style="">
-        Razem: <span id="total-price-value">@String.Format("{0:00.##}",Model.TotalPrice)</span> zł
+    <div id="TotalPrice">
+        Razem: <span id="total-price-value">@String.Format("{0:00.##}", Model.TotalPrice)</span> zł
     </div>
 
     <div class="SectionButtons">
-        <a class="ButtonLink" href="@Url.Content("~/")"> Chce kupic cos jeszcze </a>
+        <a class="ButtonLink" href="@Url.Content("~/")"> Chce kupic cos jeszcze</a>
         @if (Model.TotalPrice > 0)
         {
             <a class="ButtonLink" id="basket-button-pay" href="@Url.Action("Pay","Basket")"> Zaplac</a>
