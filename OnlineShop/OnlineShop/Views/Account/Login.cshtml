@@ -21,8 +21,9 @@
 
             <table id="login-table" style="margin-left: auto; margin-right: auto;">
                 <tr>
-                    <td>@Html.LabelFor(o => o.Email, "E-mail:")</td>
-                    <td>
+                    <td style="padding: 0px 80px 0px 0px; text-align: left;">
+                    @Html.LabelFor(o => o.Email, "E-mail:")</td>
+                    <td style="padding: 0px; text-align: center; padding-right:120px">
                         @Html.TextBoxFor(o => o.Email)
                         <div class="login-validation-message">
                             @Html.ValidationMessageFor(o => o.Email)
@@ -30,8 +31,9 @@
                     </td>
                 </tr>
                 <tr>
-                    <td>@Html.LabelFor(o => o.Password, "Haslo")</td>
-                    <td>
+                    <td style="padding: 0px 80px 0px 0px; text-align: left;">
+                    @Html.LabelFor(o => o.Password, "Haslo:")</td>
+                    <td style="padding: 0px; text-align: center;  padding-right:120px" >
                         @Html.PasswordFor(o => o.Password)
                         <div class="login-validation-message">
                             @Html.ValidationMessageFor(o => o.Password)
@@ -40,15 +42,16 @@
                     <td></td>
                 </tr>
                 <tr>
-                    <td colspan="3">
-                        <div class="checkbox" style="margin-bottom: 10px;">
+                    <td colspan="3" style="text-align: center; padding-right: 0px; padding-left: 0px;">
+                        <div class="checkbox" style="margin-bottom: 10px; padding-bottom:10px;">
                             @Html.CheckBoxFor(m => m.RememberMe, new { @checked = "checked" })
                             @Html.LabelFor(m => m.RememberMe)
                         </div>
 
-                        <input type="submit" value="Login" class="submitLink" style="height: 40px;" />
+                        <input type="submit" value="Zaloguj sie" class="submitLink" style="height: 40px; text-align: center; margin: 0px; padding: 0px;" />
                     </td>
                 </tr>
+         
             </table>
         }
 

@@ -3,22 +3,22 @@
             xmlns="http://mvcsitemap.codeplex.com/schemas/MvcSiteMap-File-4.0"
             xsi:schemaLocation="http://mvcsitemap.codeplex.com/schemas/MvcSiteMap-File-4.0 MvcSiteMapSchema.xsd">
 
-  <mvcSiteMapNode title="Home" controller="Home" action="Index">
-    <mvcSiteMapNode title="Categories" controller="Products" action="List" dynamicNodeProvider="OnlineShop.Infrastructure.CategoriesDynamicNodeProvider, OnlineShop" >
-      <mvcSiteMapNode title="Product" controller="Products" action="Details" dynamicNodeProvider="OnlineShop.Infrastructure.ProductsDetailsDynamicNodeProvider, OnlineShop" />
+  <mvcSiteMapNode title="Strona glowna" controller="Home" action="Index">
+    <mvcSiteMapNode title="Kategorie" controller="Products" action="List" dynamicNodeProvider="OnlineShop.Infrastructure.CategoriesDynamicNodeProvider, OnlineShop" >
+      <mvcSiteMapNode title="Produkt" controller="Products" action="Details" dynamicNodeProvider="OnlineShop.Infrastructure.ProductsDetailsDynamicNodeProvider, OnlineShop" />
     </mvcSiteMapNode>
-    <mvcSiteMapNode title="Basket" controller="Basket" action="Index">
-      <mvcSiteMapNode title="OrderData" controller="Basket" action="Pay"/>
-        <mvcSiteMapNode title="OrderConfirmation" controller="Basket" action="ConfirmOrder"/>
+    <mvcSiteMapNode title="Koszyk" controller="Basket" action="Index">
+      <mvcSiteMapNode title="Dane zamowienia" controller="Basket" action="Pay"/>
+        <mvcSiteMapNode title="Potwierdzenie zamowienia" controller="Basket" action="OrderConfirmation"/>
       
 </mvcSiteMapNode>
 
-    <mvcSiteMapNode title="Account" controller="Manage" action="Index">
-      <mvcSiteMapNode title="Register" controller="Account" action="Register" />
-      <mvcSiteMapNode title="Login" controller="Account" action="Login" />
-      <mvcSiteMapNode title="Edition Product" controller="Manage" action="AddProduct" />
-      <mvcSiteMapNode title="Your Data" controller="Manage" action="Index" />
-      <mvcSiteMapNode title="Orders" controller="Manage" action="OrdersList" />
+    <mvcSiteMapNode title="Konto" controller="Manage" action="Index">
+      <mvcSiteMapNode title="Rejestracja" controller="Account" action="Register" />
+      <mvcSiteMapNode title="Logowanie" controller="Account" action="Login" />
+      <mvcSiteMapNode title="Edycja produktu" controller="Manage" action="AddProduct" />
+      <mvcSiteMapNode title="Twoje Dane" controller="Manage" action="Index" />
+      <mvcSiteMapNode title="Zamowienia" controller="Manage" action="OrdersList" />
 </mvcSiteMapNode>
 
 

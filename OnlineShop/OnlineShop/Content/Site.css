@@ -303,3 +303,128 @@ footer {
     
 
 }
+
+
+#Register {
+    padding-top: 100px;
+}
+
+
+.submitLink {
+  //  background-color: transparent;
+   // border: none !important;
+   // color: black;
+  // cursor: pointer;
+    font-size: 16px;
+    text-align: center;
+}
+
+
+
+#login-table {
+    margin-left: 20px;
+    margin-top: 50px;
+    margin-bottom: 20px;
+    border-style: none;
+}
+
+    #login-table tr {
+        height: 60px;
+        
+    }
+
+        #login-table tr td {
+          //  vertical-align: middle;
+          
+        }
+
+        #login-table tr:not(:nth-child(3)) td:first-child {
+           // padding-right: 50px;
+         //   vertical-align: middle;
+        }
+
+        #login-table tr td:nth-child(2) {
+         //   vertical-align: middle;
+        }
+
+        #login-table tr td:nth-child(3) {
+           // padding-left: 10px;
+          //  font-size: 15px;
+          //  color: red;
+        }
+
+        #login-table tr:nth-child(3) td {
+         //   text-align: right;
+           // padding: 10px;
+        }
+
+    #login-table input {
+       // border: 1px solid gray;
+        width: 250px;
+        height: 30px;
+        padding: 5px;
+    }
+
+        #login-table input[type=checkbox] {
+            width: 40px;
+            
+        }
+
+    #login-table textarea {
+        width: 250px;
+        border: 1px solid gray;
+        padding: 5px;
+        margin-top: 5px;
+    }
+
+    #login-table .login-validation-message {
+        margin-bottom: 7px;
+        color: red !important;
+        font-size: 14px;
+      
+        width: 250px;
+    }
+
+    #login-table .text-danger {
+        text-decoration: none;
+    }
+
+#login-error {
+    color: red;
+    margin-top: 20px;
+    text-align: center;
+}
+
+
+.ButtonLink {
+    // background-color: transparent;
+    // border: none !important;
+    // color: black;
+    // cursor: pointer;
+    font-size: 16px;
+    text-align: center;
+}
+
+
+#Pay {
+    padding-top: 100px;
+    padding-left: 500px;
+}
+
+
+#checkout-address-table {
+    margin-left: 20px;
+    margin-top: 50px;
+    margin-bottom: 20px;
+    border-style: none;
+}
+
+    #checkout-address-table tr {
+        height: 25px;
+    }
+
+ .pay-validation-message {
+    margin-bottom: 7px;
+    color: red !important;
+    font-size: 14px;
+}
