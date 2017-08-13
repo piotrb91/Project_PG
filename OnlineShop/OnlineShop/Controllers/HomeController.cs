@@ -50,14 +50,6 @@ namespace OnlineShop.Controllers
 
 
 
-
-
-
-          
-
-
-
-
             List<Product> recent;
             if (cache.IsSet(Consts.RecentCacheKey))
             {
@@ -94,7 +86,6 @@ namespace OnlineShop.Controllers
 
 
 
-     
 
 
         }
