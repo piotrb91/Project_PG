@@ -32,9 +32,7 @@ textarea {
     margin-bottom: 12px;
 }
 
-p.RecentMainpage {
-   // font-size: 50px;
-}
+
 
 #MvcSiteMap {
     margin-left: 50px;
@@ -68,28 +66,18 @@ nav.CategoriesVertical {
     height: 1400px;
     margin-left: 100px;
 
-    
 }
 
-    nav.CategoriesVertical ul li {
-    //    height: 50px;
-     //   line-height: 150px;
-    }
 
-        nav.CategoriesVertical ul li:hover {
-         //   background-color: #EBEBEB;
-        }
 
         nav.CategoriesVertical ul li a {
-         //   width: 100%;
+         
             display: block;
             height: 100%;
-           // padding-left: 75px;
             background-repeat: no-repeat;
             background-position-x: 5px;
             background-position-y: 50%;
-            
-            
+ 
         }
 
     nav.CategoriesVertical a {
@@ -99,42 +87,16 @@ nav.CategoriesVertical {
     }
 
 
-#SectionProductsList {
-  //  width: 750px;
-  //  margin-top: 20px;
- 
-}
+
        
 
 
 
 ul.ProductsListSmall {
- //   overflow: hidden;
     list-style-type: none;
- //   font-size: 18px;
 }
 
-    ul.ProductsListSmall li {
-     //   float: left;
-      //  position: relative;
-        
-    }
-
-        ul.ProductsListSmall li article {
-         //   height: 100%;
-        }
-
-
-#CategoriesListRightSection {
-    // margin-left: 50px;
-    // float: left;
-    
-}
-
-#SectionProduct {
-  //  margin-left: 50px;
-    //float: left;
-}
+ 
 
 
 
@@ -148,20 +110,17 @@ ul.ProductsListSmall {
 
 #ProductRight {
     padding-top: 100px;
-    //padding-left: 50px;
-  
 }
 
 
 #ProductName {
-    //padding-top: 65px;
+    
     padding-left: 20px;
     padding-bottom:25px;
 }
 
 
 #ProductPriceLeft {
-   // padding: 25px;
     padding-top:25px;
     padding-right: 125px;
     float: left;
@@ -170,8 +129,7 @@ ul.ProductsListSmall {
 
 #AddToBasketLink {
     padding-top: 20px;
-    //float: left
-    
+ 
 }
 
 
@@ -252,17 +210,13 @@ footer {
 
 
 #Basket {
-    // padding: 90px 55px 55px 330px;
+    
     float: left;
     padding: 30px 30px 25px 50px;
   
 }
 
-#basketTable {
-    // width: 100%;
-    // border-spacing: 200px 100px;
-    // border-collapse: collapse;
-}
+
 
     #basketTable tr td {
          padding-top: 25px;
@@ -311,10 +265,7 @@ footer {
 
 
 .submitLink {
-  //  background-color: transparent;
-   // border: none !important;
-   // color: black;
-  // cursor: pointer;
+
     font-size: 16px;
     text-align: center;
 }
@@ -333,33 +284,9 @@ footer {
         
     }
 
-        #login-table tr td {
-          //  vertical-align: middle;
-          
-        }
-
-        #login-table tr:not(:nth-child(3)) td:first-child {
-           // padding-right: 50px;
-         //   vertical-align: middle;
-        }
-
-        #login-table tr td:nth-child(2) {
-         //   vertical-align: middle;
-        }
-
-        #login-table tr td:nth-child(3) {
-           // padding-left: 10px;
-          //  font-size: 15px;
-          //  color: red;
-        }
-
-        #login-table tr:nth-child(3) td {
-         //   text-align: right;
-           // padding: 10px;
-        }
+   
 
     #login-table input {
-       // border: 1px solid gray;
         width: 250px;
         height: 30px;
         padding: 5px;
@@ -397,10 +324,6 @@ footer {
 
 
 .ButtonLink {
-    // background-color: transparent;
-    // border: none !important;
-    // color: black;
-    // cursor: pointer;
     font-size: 16px;
     text-align: center;
 }
