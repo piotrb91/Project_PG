@@ -321,6 +321,10 @@
     <Compile Include="Migrations\201708071303246_DeleteShoeSize.Designer.cs">
       <DependentUpon>201708071303246_DeleteShoeSize.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201708181516479_update db.cs" />
+    <Compile Include="Migrations\201708181516479_update db.Designer.cs">
+      <DependentUpon>201708181516479_update db.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\BasketPosition.cs" />
     <Compile Include="Models\Category.cs" />
@@ -395,6 +399,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201708071303246_DeleteShoeSize.resx">
       <DependentUpon>201708071303246_DeleteShoeSize.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201708181516479_update db.resx">
+      <DependentUpon>201708181516479_update db.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
