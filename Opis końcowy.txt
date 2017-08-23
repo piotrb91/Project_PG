@@ -1,0 +1,209 @@
+Temat Projektu: OnlineShop, sklep internetowy wykonany w technologii ASP.NET
+
+Link do filmu:
+https://www.youtube.com/watch?v=fr1HJXoVPac&feature=youtu.be
+
+
+
+Wykorzystano EntityFramework, Owin oraz MVC Site Map, a tak¿e narzêdzie Glimpse, które pos³u¿y³o do sprawdzenia poprawnoœci pobierania danych z bazy oraz pamiêci cache
+
+W folderze App_Start zawierajaj¹ sie pliki:
+- u¿ytych stylów css oraz skryptów js (BundleConfig.cs)
+- IdentityConfig.cs, zawarte tutaj g³ównie walidacje logowañ. Pos³u¿ono siê gotowym wzorem oferowanym przez VisualStudio
+- RouteConfig.cs, okreœla nazwê okien: 
+  routes.MapRoute(name: "ProductsList",
+                url: "Category/{nameCategories}.html",
+                defaults: new { controller = "Products", action = "List" });
+okreœla i¿ akcja "List" z kontrolera "Products", wyœwietla widok "ProductsList", natomiast sciezka url wygl¹da nastêpuj¹co:
+Category/{nameCategories}.html, gdzie nameCategories to nazwa kategorii
+
+W katalogu Content: 
+- Content/images wstawiano obrazki, które zosta³y u¿yte do wyœwietlenia zawartoœci strony, a tak¿e przypisane do produktów w bazie danych
+- Content/themes zawarte s¹ style css.
+
+Katalog Controllers:
+- AccountController pos³u¿ono siê oferowan¹ przez VisualStudio klas¹ wspomagaj¹ca logowanie u¿ytkownika
+- BasketController to kontroler odpowiedzialny za dzia³ania koszyka, u¿ywa bazy danych "ShopContext"
+oraz interfejsu ISessionManager, który u¿ywa ciasteczek.
+Akcja BasketContoller pobiera baze danych oraz sesjê.
+W akcji Index pobierana jest lista w koszyku oraz wartoœæ ca³kowita koszyka, a tak¿e jest tworzy nowy widok modelu z przypisaniem wartoœci oraz zwracany jego widok:
+
+public ActionResult Index()
+        {
+            var basketPositions = basketManager.DownloadBasket();
+            var totalPrice = basketManager.DownloadBasketValue();
+
+            BasketViewModel basketVM = new BasketViewModel()
+            {
+                BasketPositions = basketPositions,
+                TotalPrice = totalPrice
+            };
+            return View(basketVM);
+        }
+
+akcja AddToBasket pobiera parametr id w postaci liczby ca³kowitej, a tak¿e przekazuje te dane do akcji index
+akcja DownloadQuantityItemsBasket zwraca liczbê pozycji w koszyku
+akcja RemoveFromBasket pobiera parametr productId, pobierane jest quantityPosition, quantityBasketPositions,basketValue z basketManager, a tak¿e deklarujemy
+nowy model widoku BasketRemoveViewModel i przypisuje do niego wartoœci, zwracam widok modelu w formacie Json.
+
+ public async Task<ActionResult> Pay() tworzy zadanie p³atnoœci, jeœli u¿ytkownik jest zalogowany przypisuje dane u¿ytkownika i zwraca widok order. Jeœli u¿ytkownik nie jest zalogowany
+wywo³uje akcje Login z kontrolera Account.
+
+Akcja Pay pobierajaj¹ca parametr orderDetails dzia³a w podobny sposób, sprawdza czy dane s¹ poprawne. Z tym, tworzy zamówienie i aktualizuje model oraz na koniec czyœci koszyk i wywo³uje akcje "OrderConfirmation"
+w innym przypadku zwraca widok orderDetails
+Akcja OrderConfirmation zwraca widok
+
+-klasa HomeController
+Pobiera baze danych jako zmienn¹ db. W akcji index tworzy pamiêæ cache do przechowywania kategorii oraz produktów by zwiêkszyæ wydajnoœæ strony, by nie musia³a za ka¿dym razem pobieraæ danych z bazy. I tworzy listê listê kategorii.
+Kategorie s¹ sortowane po nazwie rosn¹co:
+categories = db.Categories.OrderBy(a => a.CategoryName).ToList();
+Zastosowano tu wyra¿enia LINQ, i te kategorie s¹ przechowywane 120 minut w pamiêci cache:
+cache.Set(Consts.CategoriesCacheKey, categories, 120);
+Podobnie dzieje siê z list¹ recent, która s³u¿y do wyœwietlania nowoœci na stronie g³ównej, pobiera ona produkty z cache gdy zawiera je pamiêæ podrêczna, sortuje malej¹co po dacie dodania i wybiera 6 wpisuj¹c je do listy, przechowuje dane w cache jedn¹ minutê
+recent = db.Products.OrderByDescending(a => a.DateAdded).Take(6).ToList();
+                cache.Set(Consts.RecentCacheKey, recent, 1);
+Na koñcu tworzy nowy widok HomeViewModel i przypisuje kategorie oraz nowoœci, a nastêpnie zwraca ten widok.
+Ostatni¹ akcj¹ w tym kontolerze jest akcja StaticSites która pobiera parametr name i zwraca widok name. 
+
+- kontoler ManageController, tutaj skorzystano z gotowych rozwi¹zañ oferowanych przez VisualStudio, rozwiazan pozwalajacych zarzadzac kontem, swoimi danymi i równie¿ zmian¹ has³a itp.
+Metoda index wyœwietla widok oraz sprawdza czy s¹ przechowywane dane.
+Metoda ChangeProfile pobiera dane u¿ytkownika:
+var user = await UserManager.FindByIdAsync(User.Identity.GetUserId());
+zmienia dane na podstawie przes³anych danych:
+user.UserData = userData;
+oraz uaktualnia dane:
+var result = await UserManager.UpdateAsync(user);
+W przypadku b³êdu wywo³uje metodê AddErrors oraz sprawdza poprawnoœæ danych
+Metoda ChangePassword dzia³a podobnie natomiast s³u¿y do zmiany i sprawdzenia poprawnoœci zmiany has³a u¿ytkownika
+
+- ProductsContoller
+pobiera bazê danych, akcja Index zwraca widok. Akcja List pobiera nazwê kategorii, a tak¿e parametr searchQuery jako wartoœc null, ten parametr s³u¿y do wyszukiwania produktu pooprzez wpisanie nazwy produktu na stronie
+pobiera kategoriê zawierajac¹ produkty gdzie sortuje rosn¹co i wyœwietla pojedynczy elelment:
+a takze pobiera produkty ktore sortuje malej¹co:
+var category = db.Categories.Include("Products").Where(k => k.CategoryName.ToUpper() == nameCategories.ToUpper()).Single();
+     var products = category.Products.Where(a => (searchQuery == null || a.ProductName.ToLower().Contains(searchQuery.ToLower())));
+Jeœli u¿yto wyszukiwarki poprzez wpisanie nazwy produktu zwraca widok czêœciowy produktów, jeœli nie to zwraca wszystkie produkty nale¿¹ce do danej kategorii.
+
+Akcja Details wyszukuje produkt po id i zwraca widok tego produktu.
+Akcja CategoriesMenu pobiera posortowane dane kateogrii i zwraca widok czesciowy, a takze przetrzymuje je w cachu przez 60000ms i zwraca widok czêsciowy _CategoriesMenu z argumentem kategorii, akcja mo¿e byæ wywo³ywana tylko z poziomu widoku [ChildActionOnly].
+Akcja ProductsTips pobiera parametr term, s³u¿y ona do wyœwietlania podpowiedzi podczas wyszukiwania produktu, wybiera maksymalnie szeœæ podpowiedzi sortuj¹c je, zawieraj¹ce przekazany parametr w nazwie. Zwraca ona wynik w postaci Json produktów.
+
+
+W katalogu DAL(Warstwa dostêpu do danych) s¹ zawarte pliki powi¹zane z baz¹ danych
+- ProductsInitilizer.cs to inicjalizator bazy danych. Przy uruchomieniu programu tworzy b¹dŸ aktualizuje bazê danych, Zawiera listê kategorii oraz produktów.
+- ShopContext.cs, która dziedziczy po ShopContext, dodano klasy modelu by stworzyæ tabele np.:
+public DbSet<Product> Products {get; set;}
+w pliku Webconfig dodano ConnectionStrings do bazy danych, nazwê oraz scie¿ke do bazy danych
+Dodano tutaj konstruktor do którego przekazano bazê "ShopContext"
+Ostatnia funkcja OnModelCreating pos³u¿y³a do tego by nie zosta³y dodawane konwencje do nazw. Tzn. nie dodawana zosta³a koñcówka -s w liczbie mnogiej w bazie danych.
+
+W katalogu Infrastructure:
+-klasa AppConfig, która pos³u¿y³a do dostawania siê do Webconfig, wpisów konfiguracyjnych. Pobiera katalog ImagesFolder i uzykuje dostêp do folderu gdzie zawarte s¹ obrazki, pliki graficzne.
+-klasa BasketManager pobiera dane sesji oraz bazê danych
+zawiera Listê koszyka, jeœli koszyk jest pusty tworzy now¹ listê, jeœli s¹ dane w pamiêci pobiera je i zwraca
+Funkcja AddToBasket pobiera parametr productID, przypisuje listê koszyka, a tak¿e szuka po productID czy ju¿ jest u¿yty, jeœli nie dodaje now¹ pozycjê i umieszcza na liœcie cenê produktu oraz zwiêksza iloœæ o jeden. Ustawia now¹ sesjê koszyka
+Funkcja RemoveFromBasket dzia³a podobnie, z tym, ¿e odejmuje jedn¹ pozycjê w koszyku, jeœli iloœæ  jest wiêksza od jeden zmniejsz¹ j¹ o jeden i zwraca t¹ iloœæ, w innym wypadku usuwa jedn¹ pozycjê w koszyku.
+Funkcja DownloadBasketValue zwraca w formacie dziesiêtnym Wartoœæ koszyka czyli iloczyn ceny oraz iloœci produktu
+Funkcja DownloadQuantityBasketPositions pobiera koszyk, a tak¿e zwraca iloœæ pozycji ró¿nych produktów 
+Funkcja CreateOrder tworzy nowe zamówienie w bazie danych 
+Funkcja EmptyBasket ustawia listê pozycji koszyka w sesji na wartoœæ null
+
+-klasa CategoriesDynamicNodeProvider pos³u¿y³a do generowania dynamicznych linków do kategorii,
+dziedziczy po klasie DynamicNodeProviderBase, w klasie jest przeci¹¿enie metody GetDynamicNodeCollection, która to przyjmuje parametr typu ISiteMapNode. Klasa zwraca listê wygenerowanych linków.
+Wewn¹trz klasy dodawane do listy s¹ kategorie iterowane po kategoriach pobierane z bazy danych. Dla pojedynczego wpisu kategorii tworzony jest DynamicNode zawieraj¹cy tytu³, klucz oraz w³aœciwoœæ wartoœæ Route i przekazywane s¹ do listy. 
+Na koniec zwracana jest lista. 
+-klasa ProductsDetailsDynamicNodeProvider dzia³a podobnie jak klasa CategoriesDynamicNodeProvider, z tym wyj¹tkiem, ¿e zawiera dodatkowo klucz rodzica (parentKey)
+-klasa Consts jest klas¹ publiczn¹ i zawiera przypisane sta³ych kluczy formatu string, by u³atwiæ ich u¿ywanie w projekcie.
+-Interfejs publiczny ICacheProvider zawieraj¹cy metody: Get do pobierana danych z cache, Set do ustawiania danych, pobiera ona klucz, dane oraz czas trwania przechowywania cache. Metoda IsSet przyjmuj¹ca klucz, metoda Invalidate do usuwanie pamiêci cache.
+-klasa DefaultCacheProvider korzysta z HttpContext i implementuje interfejs ICacheProvider
+public class DefaultCacheProvider : ICacheProvider
+    {
+        private Cache cache { get { return HttpContext.Current.Cache; 
+Zaimplementowane s¹ metody u¿yte w ICacheProvider: Get(zwraca cache), Set(Ustawia cache, wywo³uje Insert gdzie podawany jest klucz, dane oraz czas trwania przechowywania danych w cachu(expirationTime) i zosta³ wy³¹czony czas pomiêdzy odœwie¿eniami), IsSet(sprawdza czy cache jest ustawiony), Invalidate(usuwa dane).
+
+-interfejs IsessionManager zadeklarowane s¹ metody: pobranie Get, ustawienie Set (pobiera name i generyczn¹ wartoœæ value), wyczyszczenie elementów sesji Abandon oraz metoda pobrania TryGet.
+- klasa SessionManager implementuje interfejs ISessionManager i dzia³a analogicznie jak w przypadku DefaultCacheProvider. Stworzona jest prywatna instancja HttpSessionState, które jest wykorzystywan¹ sesj¹. Kontrolerem jest SessionManager który pobiera sesjê z HttpContext.
+ 
+-Klasa UrlHelpers.cs jest klas¹ statyczn¹ zawiera metodê ImagesPath przujmuj¹ca parametr rozszerzaj¹cy klasê UrlHelper, pobiera nazwê obrazka.
+w niej utworzona jest zmienna ImagesFolder pobierana z klasy AppConfig.ImagesFolderRelative, zadeklarowana jest œcie¿ka z metod¹ Combine powi¹zane jest ImagesFolder z nameImage,
+ utworzona jest tez scie¿ka bezwzglêdna z helpera z metody Content do której prekazana jest scie¿ka. Zwraca absolutePath, czyli scie¿kê bezwzglêdn¹.
+
+Katalog Migations zawiera migracje, czyli opisane zmiany w bazie danych, które zosta³y wykonane dziêki poleceniu w konsoli 'Add-Migration', automatyczne migracje zosta³y wy³¹czone co widnieje w pliku konfiguracyjnym: 
+AutomaticMigrationsEnabled = false;
+
+Katalog Models (na podstawie tych klas s¹ tworzone tabele w bazie danych):
+- klasa Product z polami: ProductID - identyfikator produktu, CategoryID - identyfikator kategorii, ProductName - nazwa produktu, DateAdded - data dodanie, NameImageFile - nazwa pliku obrazka, ShoeDescribe - opis, Price - cena, 
+oraz dodana zosta³a w³aœciwoœæ nawigacyjna do tabelii gdzie zawarte s¹ kategorie, czyli klasa Category.
+- klasa Category zawiera pola: CategoryID - identyfikator kategorii z atrybutem d³ugoœci znaków [StringLength(50)] oraz nazwê kategorii, a tak¿e korzysta z kolekcji Produktów.
+- klasa BasketPosition, zawiera pola: Product - gdzie okreœla wybrany produkt do koszyka, Quantity - iloœæ produktów oraz Value jako wartoœæ produktu b¹dŸ produktów o tym samym ID.
+- klasa Order zawiera pola OrderID - identyfikator zamówienia, UserId - identyfikator u¿ytkownika oraz User - u¿ytkownik
+Name - imiê, Surname - naziwsko, Address- adres, City - miasto, PostCode - kod pocztowy, Phone - telefon, Comment - komentarz, OrderStatus- stan zamówienia, OrderValue - wartoœæ zamówienia, DateAdded - data dodania, OrderPositions - lista pozycji zamówienia.
+Dodano tak¿e enumerator, by okreœliæ czy zamówienie jest nowe b¹dŸ zrealizowane. By³ w planach, natomiast nie skorzystano z tego enumeratora.
+- klasa OrderPosition z polami: OrderPositionID - ID pozycji zamówienia, OrderID - Id zamówienia, ProductID - Id produktu, Quantity - iloœæ, PurchasePrice - cena zakupu, a tak¿e w³aœciwoœci nawigacyjne dla produktu i zamówienia:
+public virtual Product product { get; set; }
+        public virtual Order order { get; set; }
+- klasa UserData zawiera pola : Name, Surname, Address, City, PostCode, Phone, Email opisane wy¿ej.
+
+Katalog ViewModels reprezentuje dane wyœwietlane na stronie:
+- AccountViewModels odpowiada za dane wyœwietlana na stronie danych u¿ytkownika: logowania oraz rejestracji.
+Zawiera dwie klasy LoginViewModel oraz RegisterViewModel.
+- BasketRemoveViewModel zawiera pola, które wyœwietlane s¹ widoku koszyka: BasketTotalPrice - cena ca³kowita zakupu, BasketQuantityPositions - iloœæ pozycji w koszuku, QuantityPositionsRemoved - iloœæ pozycji usuniêtych, IdPositionRemoved - Identyfikator usuniêtej pozycji.
+- BasketViewModel, który pobiera listê pozycji koszyka oraz cenê ca³kowit¹.
+- HomeViewModel zawiera interfejs zawieraj¹cy listê kategorii oraz nowoœci, które wyœwietlane s¹ na stronie g³ównej
+- ManageViewModels zawiera dwie klasy ManageCredentialsViewModel, która s³u¿y do zmiany danych u¿ytkownika, oraz klasa ChangePasswordViewModel s³u¿¹ca do zmiany has³a.
+
+Katalog Views zawiera to co strona wyœwietla:
+ViewBag.Title okreœla tytu³ strony
+Layout okreœla z jakie layoutu korzysta nasz widok, 
+Section Scripts okreœla jakich skryptów u¿yto w widoku, reszta jest kodem html
+Podkatalog Account:
+-Login.cshtml - odpowiada za widok formularza logowania, u¿yto tu metody post korzystaj¹cej z kontrolera Account i akcji login:
+ @using (@Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post))
+ a tak¿e mo¿liwoœci przejœcia do akcji rejestracji po klikniêciu na link:
+<a href="@Url.Action("Register")">Nie mam jeszcze konta</a>
+-Register.cshtml - odpowiada za widok formularza rejestracji, u¿ywa akcji Register z kontrolera Account
+Podkatalog Basket:
+AddToBasket - widok dodania do koszyka
+Index - widok okna, gdy znajdujemy siê w koszyku, zawiera akcje: CategoriesList z kontrolera Products, a tak¿e div MvcSiteMap, dziêki któremu wyœwietlana jest œcie¿ka nawigacyjna obecnej strony
+Równie¿ tabelê która iteruje po BasketPosition w modelu BasketPositions i wyœwietla odpowiednio: obrazek, nazwê oraz wartoœæ, a tak¿e w zale¿noœci czy coœ znajduje siê w koszyku wyœwietla tekst. Zawiera równie¿ przycisk z akcj¹ Pay z kontrolera Basket. Korzysta równie¿ z JS w celu usuniêcia jednego produktu z koszyka.
+OrderConfirmation - prosty widok, który wyœwietla tekst i korzysta z layoutu: _RightSectionLayout.cshtml
+Pay - widok korzystaj¹cy z modelu Order: @model OnlineShop.Models.Order, znajduje siê tu formularz w postaci tabeli w celu wpisania danych u¿ytkownika i korzysta z akcji Pay z kontrolera Basket.
+Podkatalog Home:
+AboutUs - widok zak³adki "O Nas"
+Contact - widok zak³adki "Kontakt"
+Index widok g³ównej strony korzystaj¹cy z modelu HomeViewModel. Iteruje kategorie z modelu Categories oraz korzysta z akcji List z kontrolera Products wyœwietlaj¹c nazwy kategorii. Zawiera równie¿ pude³ko RecentMainPage gdzie iterowane s¹ nowoœci i wyœwietlane zostaj¹ nazwy produktów oraz obrazek produtku w pojedynczym divie.
+Podkatalog Manage:
+Index.cshtml korzysta z layoutu _ManageLayout.cshtml korzysta z klasy zmieniaj¹cych dane u¿ytkownika "ManageCredentialsViewModel"
+u¿ywa akcji ChangeProfile z kontrolera Manage, wyœwietla formularz w postaci tabeli do wprowadzania danych, a tak¿e metod Post.
+Podkatalog Products zawiera widoki wyœwietlane gdy znajdujemy siê w dowolnym oknie kategorii:
+_CategoriesMenu - widok czêœciowy który korzysta z pêtli foreach by wyœwietliæ nazwê kategorii
+_ProductsList - widok czêœciowy wykorzystywany do wyœwietlenia produktów w danej kategorii, równie¿ korzysta z pêtli foreach.
+Details - widok wyœwietlaj¹cy szczegó³y produktu. To tutaj wyœwietlany jest obrazek, nazwa, cena produktu, a tak¿e ikona koszyka, która po naciœniêciu uruchamia akcje AddToBasket z kontrolera Basket
+List - wykorzystuje widok czêœciowy _ProductsList, a tak¿e akcje CategoriesMenu. Zawiera akcjê ProductsTips, która mieœci siê w formularzu do wyszukiwania produktu po nazwie. Formularz z metod¹ get korzysta ze sekryptu jêzyka Jquery z atrybutem autouzepe³niania formularza.
+Podkatalog Shared, czyli czêœci wspólne widoków stron:
+_Layout - zadeklarowano z jakiego jêzyku korzysta dokument htmt oraz z jakich stylów css, a tak¿e dodano bootstrap. 
+Dodano akcje dla menu górnego: np. StaticSites kontrolera Home z wysy³anym okreœlonym parametrem name. A tak¿e akcje Index oraz DownloadQuantityItemsBasket z kontolera Basket, dziêki którym w postaci liczby widnieje iloœæ elementów w koszyku w górnym menu. Tak¿e dodano widok czêœciowy _LoginPartial, który 
+wyœwietla przyciski do zalogowania i rejestracji b¹dŸ do zarz¹dzania konta i wylogowania u¿ytkownika w zale¿noœci czy jesteœmy zalogowani.
+U¿yto tak¿e nag³ówek w postaci banera, czyli wyœwietlane logo. A tak¿e okreœlono w dokumencie cia³o @RenderBody() oraz stopkê.
+_LoginPartial.cshtml widok korzystaj¹cy z AspNet.Identity zawieraj¹cy metody post do zalogowania, rejestracji u¿ytkownkia oraz zarz¹dzania kontem i wylogowywania.
+_ManageLayout.csthml podobnie jak _Layout, tylko wyœwietlany jest podczas gdy u¿ytkownik jest zalogowany. Zmiana taka, ¿e zawiera akcjê Index z kontrolera Manage pozwalaj¹c¹ przekierowaæ siê do zarz¹dzania kontem.
+_RightSectionLayout.cshtml widok okna z kategoriami oraz scie¿k¹ MvcSiteMap.
+
+Dokument _ViewStart.cshtml okreœla jaki widok jest widokiem startowym:
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+Plik Mvc.sitemap:
+okreœla jakie tytu³y oraz scie¿ki strony zostaj¹ wyœwietlone po wykonaniu akcji np.
+<mvcSiteMapNode title="Logowanie" controller="Account" action="Login" />
+Tytu³ Logowanie jest przypisany do akcji Login z kontrolera Account, wieæ scie¿ka bêdzie wyœwietlaæ ...>Logowanie
+Plik Web.config zawiera wpisy konfiguracyjne m.in. deklaracjê sciêzki bazy danych a tak¿e u¿ytych narzêdzi
+
+
+W projekcie wykorzystano m.in:
+-wyra¿enia Linq s³u¿¹cê do obs³ugi danych w kolekcji
+-dziedziczenie
+-polimorfizm
+-hermetyzacjê
+-interfejsy
