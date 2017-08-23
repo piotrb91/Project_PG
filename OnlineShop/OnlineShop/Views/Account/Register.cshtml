@@ -1,0 +1,70 @@
+﻿@model OnlineShop.ViewModels.RegisterViewModel
+@{
+    ViewBag.Title = "Register";
+    Layout = "~/Views/Shared/_RightSectionLayout.cshtml";
+}
+
+
+
+
+
+<div id="Register">
+    @using (@Html.BeginForm("Register", "Account"))
+    {
+        @Html.AntiForgeryToken()
+
+        <div id="login-error">
+            @Html.ValidationMessage("loginerror", "")
+            @Html.ValidationSummary()
+        </div>
+
+        <table id="login-table" style="margin-left: auto; margin-right: auto;">
+            <tr>
+                <td style="padding: 0px 80px 0px 0px; text-align: left;">
+                @Html.LabelFor(o => o.Email, "E-mail:")</td>
+                <td style="padding: 0px; text-align: center;">
+                    @Html.TextBoxFor(o => o.Email)
+                    <div class="login-validation-message">
+                        @Html.ValidationMessageFor(o => o.Email)
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td style="padding: 0px 80px 0px 0px; text-align: left;">
+                @Html.LabelFor(o => o.Password, "Haslo:")</td>
+                <td style="padding: 0px; text-align: center;">
+                    @Html.PasswordFor(o => o.Password)
+                    <div class="login-validation-message">
+                        @Html.ValidationMessageFor(o => o.Password)
+                    </div>
+                </td>
+                <td></td>
+            </tr>
+            <tr>
+                <td style="padding: 0px 80px 0px 0px; text-align: left;">
+                    @Html.LabelFor(o => o.ConfirmPassword, "Potwierdz haslo:")
+                </td>
+                <td style="padding: 0px; text-align: center;">
+                    @Html.PasswordFor(o => o.ConfirmPassword)
+                    <div class="login-validation-message">
+                        @Html.ValidationMessageFor(o => o.ConfirmPassword)
+                    </div>
+                </td>
+                <td></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td colspan="2" style="text-align: center; padding-right: 0px;">
+                    <input type="submit" value="Zarejestruj sie" class="submitLink" style="height: 40px; text-align: center; margin: 0px; padding: 0px;" />
+                </td>
+            </tr>
+        </table>
+    }
+</div>
+
+@section Scripts
+{
+    <script src="~/Scripts/jquery-2.2.1.js"></script>
+    <script src="~/Scripts/jquery.validate.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+}

@@ -1,0 +1,21 @@
+﻿@model IEnumerable<OnlineShop.Models.Category>
+@using OnlineShop.Infrastructure
+
+
+<nav class="CategoriesVertical">
+    <h2>Kategorie</h2>
+    <br>
+    
+        @foreach (var category in Model)
+            {
+            
+                <a href="@Url.Action("List","Products", new { nameCategories = category.CategoryName.ToString() })">
+                   
+                    @category.CategoryName
+                </a>
+
+                <br>
+            
+        }
+   
+</nav>

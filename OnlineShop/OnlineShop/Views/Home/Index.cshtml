@@ -1,0 +1,52 @@
+﻿@model OnlineShop.ViewModels.HomeViewModel
+@using OnlineShop.Infrastructure
+
+@{
+    ViewBag.Title = "Shop Online";
+}
+
+
+
+<nav class="CategoriesVertical">
+
+
+
+    <h2>Kategorie</h2>
+    <br>
+    @foreach (var category in Model.Categories)
+            {
+
+        <a style="font-size:16px; color:#696969" href="@Url.Action("List", "Products", new { nameCategories = category.CategoryName.ToString() })">
+
+            @category.CategoryName
+        </a>
+                <br>
+    }
+
+</nav>
+
+    <div id="RecentMainPage">
+        <h3>
+           Nowości
+        </h3>
+        </div>
+            
+     
+    
+    <div class="row">
+        @foreach (var recent in Model.Recent)
+            {
+
+            <article>
+                <div class="col-md-4 item text-center">
+               <a class="productDetailsLink" 
+                       href="@Url.Action("Details","Products", new { id = recent.ProductID})">
+                        <img class="product" src="@Url.ImagesPath(recent.NameImageFile)" />
+                        @recent.ProductName
+                    </a>
+                </div>
+            </article>
+        }
+
+    </div>
+

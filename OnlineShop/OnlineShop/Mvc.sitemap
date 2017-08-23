@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<mvcSiteMap xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xmlns="http://mvcsitemap.codeplex.com/schemas/MvcSiteMap-File-4.0"
+            xsi:schemaLocation="http://mvcsitemap.codeplex.com/schemas/MvcSiteMap-File-4.0 MvcSiteMapSchema.xsd">
+
+  <mvcSiteMapNode title="Strona glowna" controller="Home" action="Index">
+    <mvcSiteMapNode title="Kategorie" controller="Products" action="List" dynamicNodeProvider="OnlineShop.Infrastructure.CategoriesDynamicNodeProvider, OnlineShop" >
+      <mvcSiteMapNode title="Produkt" controller="Products" action="Details" dynamicNodeProvider="OnlineShop.Infrastructure.ProductsDetailsDynamicNodeProvider, OnlineShop" />
+    </mvcSiteMapNode>
+    <mvcSiteMapNode title="Koszyk" controller="Basket" action="Index">
+      <mvcSiteMapNode title="Dane zamowienia" controller="Basket" action="Pay"/>
+        <mvcSiteMapNode title="Potwierdzenie zamowienia" controller="Basket" action="OrderConfirmation"/>
+      
+</mvcSiteMapNode>
+
+    <mvcSiteMapNode title="Konto" controller="Manage" action="Index">
+      <mvcSiteMapNode title="Rejestracja" controller="Account" action="Register" />
+      <mvcSiteMapNode title="Logowanie" controller="Account" action="Login" />
+      <mvcSiteMapNode title="Twoje Dane" controller="Manage" action="Index" />
+    
+</mvcSiteMapNode>
+
+
+    </mvcSiteMapNode>
+    
+</mvcSiteMap>

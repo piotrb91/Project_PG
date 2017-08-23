@@ -1,0 +1,33 @@
+﻿@model IEnumerable<OnlineShop.Models.Product>
+@using OnlineShop.Infrastructure
+
+
+
+
+<div id="SectionProductsList">
+    
+        <div class="row">
+            @foreach (var product in Model)
+            {
+               
+                    <article>
+
+                        <div class="col-md-4 item text-center">
+                            <a class="productDetailsLink" href="@Url.Action("Details","Products",new { id=product.ProductID})">
+                                <img class="product" src="@Url.ImagesPath(product.NameImageFile)" />
+
+                                @product.ProductName
+
+                            </a>
+                        </div>
+                    </article>
+                
+            }
+            </div>
+</div>
+
+
+
+
+
+

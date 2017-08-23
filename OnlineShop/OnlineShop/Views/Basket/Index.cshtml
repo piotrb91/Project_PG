@@ -1,0 +1,127 @@
+﻿@model OnlineShop.ViewModels.BasketViewModel
+@using OnlineShop.Infrastructure
+
+
+@{
+    ViewBag.Title = "Basket";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div id="CategoriesList">
+
+    @Html.Action("CategoriesMenu","Products")
+
+
+    <div id="MvcSiteMap">
+        @Html.MvcSiteMap().SiteMapPath()
+    </div>
+
+
+
+</div>
+
+<div id="Basket">
+
+    <table id="basketTable">
+
+
+
+        @foreach (var basketPosition in Model.BasketPositions)
+        {
+            <tr id="basket-row-@basketPosition.Product.ProductID">
+                <td>
+                    <a href="@Url.Action("Details", "Products", new { id= basketPosition.Product.ProductID})">
+                    <img src="@Url.Content("~/Content/images/"+basketPosition.Product.NameImageFile)"/>
+                    </a>
+                </td>
+
+                <td>
+                    <a href="@Url.Action("Details", "Products", new { id= basketPosition.Product.ProductID})">
+                       @basketPosition.Product.ProductName
+                    </a>
+                </td>
+                <td>
+                    Ilosc: <span id="basket-quantity-positions-@basketPosition.Product.ProductID"> @basketPosition.Quantity </span>
+                </td>
+                <td>
+                    @String.Format("{0:00.##}", basketPosition.Value) zł
+                </td>
+
+                <td>
+                    <a class="deleteProduct" data-id="@basketPosition.Product.ProductID" href="#"> Usun </a>
+                </td>
+
+
+
+               </tr>
+
+        }
+
+        </table>
+       
+    <table id="basketOption">
+        <tr id="basket-empty-message" @if (Model.BasketPositions != null && Model.BasketPositions.Count > 0) { <text> class="hidden" </text>  }>
+            <td>Twoj koszyk jest pusty. Chcesz cos dodac do koszyka?</td>
+        </tr>
+      
+    </table>
+
+
+
+    <div id="TotalPrice">
+        Razem: <span id="total-price-value">@String.Format("{0:00.##}", Model.TotalPrice)</span> zł
+    </div>
+
+    <div class="SectionButtons">
+        <a class="ButtonLink" href="@Url.Content("~/")"> Chce kupic cos jeszcze</a>
+        @if (Model.TotalPrice > 0)
+        {
+            <a class="ButtonLink" id="basket-button-pay" href="@Url.Action("Pay","Basket")"> Zaplac</a>
+        }
+    </div>
+
+
+
+
+
+</div>
+
+@section Scripts{
+    @System.Web.Optimization.Scripts.Render("~/bundles/jqueryAndJqueryUI")
+
+
+    <script type="text/javascript">
+        $(function () {
+
+            $(".deleteProduct").click(function () {
+
+                var recordToDelete = $(this).attr("data-id");
+
+                if (recordToDelete !='') {
+                    $.post("/Basket/RemoveFromBasket", { "productID": recordToDelete },
+                        function (response) {
+                            if (response.QuantityPositionsRemoved == 0) {
+                                $('#basket-row-'+response.IdPositionRemoved).fadeOut('slow', function () {
+
+                                    if (response.BasketQuantityPositions == 0) {
+                                        $("#basket-empty-message").removeClass("hidden");
+                                    }
+                                });
+                            } else {
+                                $('#basket-quantity-positions-' + response.IdPositionRemoved).text(response.QuantityPositionsRemoved);
+                            }
+
+                            if (response.BasketQuantityPositions == 0) {
+                                $('#basket-button-pay').addClass('hidden');
+                                $('#TotalPrice').addClass('invisible');
+                            }
+                            $('#total-price-value').text(response.BasketTotalPrice);
+                            $('#basket-header-quantity-items').text(response.BasketQuantityPositions);
+                        });
+                    return false;
+                }
+            });
+        });
+    </script>
+}
